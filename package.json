@@ -1,0 +1,23 @@
+{
+  "name": "portfolio-v4",
+  "version": "1.0.0",
+  "description": "Portfolio V4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shindesharad71/Portfolio-V4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shindesharad71/Portfolio-V4/issues"
+  },
+  "homepage": "https://github.com/shindesharad71/Portfolio-V4#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.0"
+  }
+}
