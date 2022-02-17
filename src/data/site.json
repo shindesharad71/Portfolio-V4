@@ -47,10 +47,6 @@
 				"icon": "nodejs"
 			},
 			{
-				"name": "Python",
-				"icon": "python"
-			},
-			{
 				"name": "Angular",
 				"icon": "angularjs"
 			},
@@ -68,6 +64,10 @@
 			}
 		],
 		"mastering": [
+			{
+				"name": "Python",
+				"icon": "python"
+			},
 			{
 				"name": "Ruby",
 				"icon": "ruby"
