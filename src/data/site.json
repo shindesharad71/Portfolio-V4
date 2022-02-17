@@ -43,21 +43,8 @@
 				"icon": "typescript"
 			},
 			{
-				"name": "PHP",
-				"icon": "php"
-			},
-			{
-				"name": "Laravel",
-				"icon": "laravel"
-			},
-			{
 				"name": "Angular",
 				"icon": "angularjs"
-			},
-			{
-				"name": "Ionic",
-				"icon": "ionic",
-				"type": "original"
 			},
 			{
 				"name": "Node.js",
@@ -74,14 +61,6 @@
 			{
 				"name": "SASS",
 				"icon": "sass"
-			},
-			{
-				"name": "Bootstrap",
-				"icon": "bootstrap"
-			},
-			{
-				"name": "Tailwind",
-				"icon": "tailwindcss"
 			}
 		],
 		"mastering": [
@@ -101,27 +80,16 @@
 	},
 	"work": [
 		{
-			"title": "Yaatree",
-			"description": "Our amazing puppy, who goes on all kinds of cool adventures",
-			"image": "/assets/yaatree.jpg"
+			"title": "Anstagram",
+			"description": "Instagram clone with MEAN stack.",
+			"image": "/assets/yaatree.jpg",
+			"link": "https://github.com/shindesharad71/Anstagram/"
 		},
 		{
-			"title": "Daily Dev Tips",
-			"description": "My Daily Development Tip Blog!",
+			"title": "Blog",
+			"description": "My Blog!",
 			"image": "/assets/daily-dev-tips.jpg",
-			"link": "https://daily-dev-tips.com/"
-		},
-		{
-			"title": "My Neighbor Totoro",
-			"description": "Completely build in CSS",
-			"image": "/assets/totoro.jpg",
-			"link": "https://codepen.io/rebelchris/full/rNOWbbK"
-		},
-		{
-			"title": "HQ Pack Service Center",
-			"description": "Symfony backend, with Angular front-end service center.",
-			"image": "/assets/hq-pack.jpg",
-			"info": "More info on request"
+			"link": "https://blog.shrd.in/"
 		}
 	],
 	"journey": {
@@ -204,26 +172,6 @@
 			}
 		]
 	},
-	"testimonials": [
-		{
-			"image": "/assets/nicole.jpg",
-			"name": "Nicole Bongers",
-			"title": "~ Wife",
-			"quote": "Chris is an amazing husband and dog father!"
-		},
-		{
-			"image": "/assets/guus.jpg",
-			"name": "Guus Meuwissen",
-			"title": "~ Colleague",
-			"quote": "'Ridiculously fast' is the phrase that comes to mind when I think about Chris. I had the please of working with Chris for around 2 years at Engagement Factory, while collaborating on several project teams. Chris's ability to juggle multiple projects while always committing to the highest quality is truly exceptional. Hence the reason I would say Chris is one of the most dedicated professionals I've worked with and he's always willing to go the extra mile to help you when needed. Thanks Chris! "
-		},
-		{
-			"image": "/assets/amer.jpg",
-			"name": "Amer Jaganjac",
-			"title": "~ Mentee",
-			"quote": "Chris is a very intuitive and skilled mentor. I had enjoyed learning from him. Chris made efforts in pointing out fields for development in my professional performance, and advising me on how to become a better IT professional. Thank you Chris!"
-		}
-	],
 	"socials": [
 		{
 			"link": "https://www.linkedin.com/in/shindesharad71/",
