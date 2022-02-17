@@ -43,12 +43,16 @@
 				"icon": "typescript"
 			},
 			{
-				"name": "Angular",
-				"icon": "angularjs"
-			},
-			{
 				"name": "Node.js",
 				"icon": "nodejs"
+			},
+			{
+				"name": "Python",
+				"icon": "python"
+			},
+			{
+				"name": "Angular",
+				"icon": "angularjs"
 			},
 			{
 				"name": "Git",
@@ -59,22 +63,18 @@
 				"icon": "mysql"
 			},
 			{
-				"name": "SASS",
-				"icon": "sass"
+				"name": "MongoDB",
+				"icon": "mongodb"
 			}
 		],
 		"mastering": [
 			{
-				"name": "Flutter",
-				"icon": "flutter"
+				"name": "Ruby",
+				"icon": "ruby"
 			},
 			{
-				"name": "React",
-				"icon": "react"
-			},
-			{
-				"name": "Next.js",
-				"icon": "nextjs"
+				"name": "Go",
+				"icon": "go"
 			}
 		]
 	},
