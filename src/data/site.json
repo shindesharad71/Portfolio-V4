@@ -226,27 +226,12 @@
 	],
 	"socials": [
 		{
-			"link": "https://codepen.io/rebelchris",
-			"title": "Codepen",
-			"icon": "codepen"
-		},
-		{
-			"link": "https://twitter.com/DailyDevTips1",
-			"title": "Twitter",
-			"icon": "twitter"
-		},
-		{
-			"link": "https://www.linkedin.com/in/chrisbongers/",
+			"link": "https://www.linkedin.com/in/shindesharad71/",
 			"title": "LinkedIn",
 			"icon": "linkedin"
 		},
 		{
-			"link": "https://www.facebook.com/chris.bongers.92",
-			"title": "Facebook",
-			"icon": "facebook"
-		},
-		{
-			"link": "https://github.com/rebelchris",
+			"link": "https://github.com/shindesharad71",
 			"title": "GitHub",
 			"icon": "github"
 		}
