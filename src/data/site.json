@@ -93,76 +93,36 @@
 		}
 	],
 	"journey": {
-		"2030": [
-			{
-				"title": "Senior full stack remote developer ☁️",
-				"description": "It's my dream to be a senior full-stack developer who can work remotely."
-			}
-		],
 		"2021": [
 			{
-				"title": "Got married 🍾",
-				"description": "We got married in the mountains of South Africa"
+				"title": "Joined Kuvera 🥳",
+				"description": "Started working at Kuvera as Backend Developer with tech stack of Ruby on Rails, MySQL and MongoDB."
 			},
 			{
-				"title": "Blogged for a year non-stop",
-				"description": "Every single day one article!"
-			}
-		],
-		"2020": [
-			{
-				"title": "Got engaged 💍",
-				"description": "My beautiful wife Nicole said, Yes!"
+				"title": "Graduated at University of Pune 🎓",
+				"description": "Graduated the Computer Engineering course at Pune University."
 			},
-			{
-				"title": "Started daily-dev-tips 🚀",
-				"description": "I started my blog, where I write daily development tips to help new people!"
-			},
-			{
-				"title": "Moved back to South Africa ✈️",
-				"description": "This time for Laméco I moved back to South-Africa and fell in love with the country again."
-			}
-		],
-		"2016": [
 			{
 				"title": "Senior developer 💪🏻",
-				"description": "I started as a senior developer at Laméco, working mainly on Symfony, Angular, and node.js projects. I also was responsible for mentoring students and new employees."
+				"description": "Joined SMS India as Senior Developer, worked on Python, FastAPI, MySQL and Angular"
+			}
+		],
+		"2018": [
+			{
+				"title": "Started working at Coditas Solution LLP",
+				"description": "Started working as Full Stack Developer, developing in Angular, Node, MongoDB."
+			}
+		],
+		"2017": [
+			{
+				"title": "First tech job 🥳",
+				"description": "Started working as a Web Developer for Webmatrix Technologies, programming in Angular and PHP."
 			}
 		],
 		"2015": [
 			{
-				"title": "Full-time app developer 📱",
-				"description": "I got hired by Bengees, a mobile app startup, to be the lead developer on an Ionic app!"
-			}
-		],
-		"2014": [
-			{
-				"title": "First time to South-Africa 🇿🇦",
-				"description": "A nice perk of Engagement Factory was a work trip to South Africa, little did I know I would fall in love with the country."
-			},
-			{
-				"title": "Medior developer at engagement factory 🤓",
-				"description": "My hard work paid off, and I became a Medior Developer at Engagement Factory, picked up a lot of JavaScript, PHP and Marketing skills."
-			}
-		],
-		"2013": [
-			{
-				"title": "Started my own company 🤯",
-				"description": "The moment I Graduated I also started my own company, which I still have on the side."
-			},
-			{
-				"title": "Graduated at Fontys 🎓",
-				"description": "Graduated the communication and multi-media Design course at Fontys Eindhoven."
-			}
-		],
-		"2012": [
-			{
-				"title": "Won the Atos IT challenge 🏆",
-				"description": "In 2012 we entered the ATOS IT challenge, our team \"MultiLens\" finished first in this worldwide competition. My role in this project was project managing, development en thinking on features, and the global idea."
-			},
-			{
-				"title": "First tech job 🥳",
-				"description": "Started working as a PHP Developer for ScriptMotion, programming in CodeIgniter."
+				"title": "Completed Diploma at MSBTE 🎓",
+				"description": "Completed the Diploma in Computer Engineering course at MSBTE."
 			}
 		],
 		"1994": [
