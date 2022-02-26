@@ -1,6 +1,6 @@
-# Portfolio v4
+# Portfolio V4
 
-Get started by cloning this repo
+My portfolio version 4 made with Astro.
 
 > Modify the public images
 
@@ -8,6 +8,6 @@ Get started by cloning this repo
 
 > Deploy your site and enjoy
 
-## More information
+## Credits
 
-Todo: link to blog article
+[Astro Portfolio](https://github.com/rebelchris/astro-portfolio)
