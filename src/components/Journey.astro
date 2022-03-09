@@ -6,7 +6,7 @@ const {journey} = site;
 <section id="journey">
     <h2>{title}</h2>
     {Object.keys(journey).reverse().map((year, i) => (
-        <div class="timeline">
+        <div class="timeline" data-aos="{i%2 ? "fade-up-left" : "fade-up-right"}">
             <strong class="title">{year}</strong>
             {journey[year].map(item => (
                 <div class="timeline-item">

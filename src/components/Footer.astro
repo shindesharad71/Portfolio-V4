@@ -3,7 +3,7 @@ import site from "../data/site.json";
 const title = `Let's get in touch!`;
 const {socials, author, profile_pic, resume} = site;
 ---
-<footer id="footer">
+<footer id="footer" data-aos="fade-up-left">
     <div class="footer-left">
         <h2>{title}</h2>
         <p>I love to have a chat about projects, opportunities,<br />
@@ -23,6 +23,8 @@ const {socials, author, profile_pic, resume} = site;
     <div class="footer-right">
         <img width="200" height="200" src={profile_pic} alt={author} />
     </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
 </footer>
 <style lang="scss">
 footer {
