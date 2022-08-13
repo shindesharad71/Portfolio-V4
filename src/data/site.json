@@ -1,6 +1,6 @@
 {
-	"title": "Sharad Shinde | Senior Backend Developer",
-	"description": "Sharad Shinde - Portfolio, Backend developer",
+	"title": "Sharad Shinde | Backend Engineer",
+	"description": "Sharad Shinde - Portfolio, Backend engineer",
 	"url": "https://shrd.in/",
 	"author": "Sharad Shinde",
 	"profile_pic": "/assets/sharad.webp",
@@ -133,11 +133,6 @@
 		]
 	},
 	"socials": [
-		{
-			"link": "https://www.linkedin.com/in/shindesharad71/",
-			"title": "LinkedIn",
-			"icon": "linkedin"
-		},
 		{
 			"link": "https://github.com/shindesharad71",
 			"title": "GitHub",
