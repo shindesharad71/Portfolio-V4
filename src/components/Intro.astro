@@ -1,7 +1,19 @@
 ---
-const title = `Hi! I'm Sharad, a Backend Engineer`;
-const subTitle = `5+ years development experience`;
-const description = `I am an Indian 🇮🇳 citizen living in Bangalore, KA. I love developing, traveling, listening to podcasts, and binge-watching series.`;
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+const currentMonth = currentDate.getMonth() + 1;
+let years = currentYear - 2017;
+let months = currentMonth - 11;
+
+if (months < 0) {
+    years--;
+    months += 12;
+}
+
+const title = `Hi! I'm Sharad - Software Engineer`;
+const subTitle = `${years}+ years of coding (and debugging) experience 🧑‍💻`;
+const description = `Born and raised in India 🇮🇳, now coding my heart out in Pune, MH. When I'm not crafting software solutions, you'll find me exploring the world 🌍, jamming to podcasts 🎧, or deep into an epic series binge 📺. Oh, and yes, my code has fewer bugs than your average sitcom!`;
+
 ---
 <section class="section">
     <h1 data-aos="zoom-out">{title}&nbsp;<img height="50" width="50" src="/assets/hi.gif" alt="Hi"></h1>
