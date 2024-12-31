@@ -1,6 +1,6 @@
 {
-	"title": "Sharad Shinde | Backend Engineer",
-	"description": "Sharad Shinde - Portfolio, Backend engineer",
+	"title": "Sharad Shinde | Backend Engineer & Problem Solver",
+	"description": "Portfolio of Sharad Shinde, a passionate Backend Engineer specializing in building efficient and scalable systems.",
 	"url": "https://shrd.in/",
 	"author": "Sharad Shinde",
 	"profile_pic": "/assets/sharad.webp",
@@ -12,7 +12,7 @@
 		},
 		{
 			"link": "#work",
-			"name": "Work"
+			"name": "Projects"
 		},
 		{
 			"link": "#footer",
@@ -81,13 +81,13 @@
 	"work": [
 		{
 			"title": "Anstagram",
-			"description": "Instagram clone with MEAN stack.",
+			"description": "A feature-rich Instagram clone built using the MEAN stack. Showcasing user authentication, image uploads, and a dynamic feed.",
 			"image": "/assets/anstagram.png",
 			"link": "https://github.com/shindesharad71/Anstagram/"
 		},
 		{
 			"title": "Blog",
-			"description": "My Blog!",
+			"description": "My personal blog where I share insights on tech, productivity, and life lessons.",
 			"image": "/assets/blog.jpg",
 			"link": "https://blog.shrd.in/"
 		}
@@ -96,39 +96,39 @@
 		"2021": [
 			{
 				"title": "Joined Kuvera 🥳",
-				"description": "Started working at Kuvera as a Senior Backend Developer with a tech stack of Ruby on Rails, MySQL, and MongoDB."
+				"description": "Began an exciting chapter as a Senior Backend Developer, working with Ruby on Rails, MySQL, and MongoDB."
 			},
 			{
 				"title": "Graduated from Pune University 🎓",
-				"description": "Graduated from the Computer Engineering course at Pune University."
+				"description": "Earned my Computer Engineering degree from Pune University."
 			},
 			{
-				"title": "Senior developer 💪🏻",
-				"description": "Joined SMS India as Senior Developer, worked on Python, FastAPI, MySQL, and Angular."
+				"title": "Senior Developer at SMS India 💪🏻",
+				"description": "Focused on Python, FastAPI, MySQL, and Angular to build robust solutions."
 			}
 		],
 		"2018": [
 			{
-				"title": "Started working at Coditas Solution LLP",
-				"description": "Started working as a Full Stack Developer, developing in Angular, Node, MongoDB."
+				"title": "Started at Coditas Solution LLP",
+				"description": "Took on the role of Full Stack Developer, working with Angular, Node.js, and MongoDB to deliver full-stack projects."
 			}
 		],
 		"2017": [
 			{
-				"title": "First tech job 🥳",
-				"description": "Started working as a Web Developer for Webmatrix Technologies, programming in Angular and PHP."
+				"title": "First Tech Job 🥳",
+				"description": "Began my professional journey as a Web Developer at Webmatrix Technologies, using Angular and PHP."
 			}
 		],
 		"2015": [
 			{
-				"title": "Completed Diploma at MSBTE 🎓",
-				"description": "Completed the Diploma in Computer Engineering course at MSBTE."
+				"title": "Diploma at MSBTE 🎓",
+				"description": "Completed my Diploma in Computer Engineering from MSBTE."
 			}
 		],
 		"1994": [
 			{
-				"title": "I was born 👶",
-				"description": "This is where the whole journey started."
+				"title": "The Beginning 👶",
+				"description": "The story begins—Sharad was born!"
 			}
 		]
 	},
