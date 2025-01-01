@@ -3,50 +3,44 @@ import site from "../data/site.json";
 const {title, description} = site;
 ---
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>{title}</title>
-<meta name="Description" content={description}>
-<meta property="og:locale" content="en_US" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Sharad Shinde | Senior Backend Developer" />
-<meta
-  property="og:description"
-  content="Sharad Shinde - Portfolio, Backend developer."
-/>
-<meta property="og:url" content="shrd.in" />
-<meta
-  property="og:site_name"
-  content="Sharad Shinde | Senior Backend Developer"
-/>
-<meta property="article:publisher" content="shrd.in" />
-<meta property="og:image" content="/cover.webp" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@shindesharad71" />
-<meta name="twitter:title" content="Sharad Shinde | Senior Backend Developer" />
-<meta
-  name="twitter:description"
-  content="Portfolio of Full Stack Developer - Sharad Shinde."
-/>
-<meta name="twitter:url" content="shrd.in" />
-<meta name="author" content="Sharad Shinde" />
-<meta
-  name="description"
-  content="Sharad Shinde - Portfolio, Backend developer."
-/>
-<link rel="canonical" href="https://sharadshinde.in" />
-<meta name="msapplication-TileColor" content="#14213d" />
-<meta name="theme-color" content="#14213d" />
-<meta
-  name="google-site-verification"
-  content="xdqQAL6KCVHCJcgHYDB6DDCnhx3QI6IMeen9BrKTveg"
-/>
-<meta
-  name="google-site-verification"
-  content="95psw0DXvxCto91NvXCF9AjiNHvWelhIMJ6tdah-FXE"
-/>
-<meta name="robots" content="index, follow" />
-<link rel="icon" href="/favicon.ico" />
-<link rel="stylesheet" type="text/css" href="/global.css">
+
+<!-- Primary Meta Tags -->
+<meta name="title" content={title}>
+<meta name="description" content={description}>
+<meta name="author" content="Sharad Shinde">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sharadshinde.in">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:image" content="https://shrd.in/assets/sharad.webp">
+<meta property="og:image:alt" content="Sharad Shinde's Profile Picture">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content={title}>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@shindesharad71">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:url" content="https://sharadshinde.in">
+
+<!-- Verification -->
+<meta name="google-site-verification" content="xdqQAL6KCVHCJcgHYDB6DDCnhx3QI6IMeen9BrKTveg">
+<meta name="google-site-verification" content="95psw0DXvxCto91NvXCF9AjiNHvWelhIMJ6tdah-FXE">
+
+<!-- Theme -->
+<meta name="theme-color" content="#14213d">
+<meta name="msapplication-TileColor" content="#14213d">
+
+<!-- Links -->
+<link rel="canonical" href="https://sharadshinde.in">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/global.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.12.0/devicon.min.css">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
