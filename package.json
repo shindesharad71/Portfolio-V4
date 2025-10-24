@@ -8,11 +8,20 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build"
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "astro": "^5.15.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.79.5"
   },
   "devDependencies": {
-    "@astrojs/renderer-preact": "^0.5.0",
-    "astro": "^0.17.3"
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1"
   }
 }
