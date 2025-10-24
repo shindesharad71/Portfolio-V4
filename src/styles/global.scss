@@ -3,12 +3,22 @@
   --color-purple: #14213d;
   --color-orange: #fca311;
 }
+
+// Optimize font loading
+@supports (font-display: swap) {
+  body {
+    font-display: swap;
+  }
+}
+
 body {
   background: var(--color-purple);
   color: #fff;
-  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   @media (max-width: 700px) {
     padding: 0 24px;
   }
@@ -21,6 +31,7 @@ body {
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 h1 {
   font-size: 3rem;
