@@ -1,10 +1,10 @@
 {
   "name": "@shindesharad71/portfolio-v4",
-  "description": "My personal portfolio website",
+  "description": "Portfolio website of Sharad Shinde - Staff Engineer at HighLevel, specializing in backend architecture and scalable systems",
   "author": "Sharad Shinde",
   "email": "shindesharad71@gmail.com",
   "homepage": "https://shrd.in",
-  "version": "0.0.4",
+  "version": "1.0.1",
   "private": true,
   "license": "MIT",
   "engines": {
