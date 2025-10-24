@@ -23,11 +23,14 @@ const {socials, author, profile_pic, resume} = site;
     <div class="footer-right">
         <img width="200" height="200" src={profile_pic} alt={author} />
     </div>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        window.addEventListener('load', function() {
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" is:inline></script>
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', function() {
             if (typeof AOS !== 'undefined') {
-                AOS.init();
+                AOS.init({
+                    duration: 800,
+                    once: true
+                });
             }
         });
     </script>
