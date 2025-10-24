@@ -1,0 +1,17 @@
+{
+  "name": "Sharad Shinde - Staff Engineer",
+  "short_name": "Sharad Shinde",
+  "description": "Portfolio of Sharad Shinde, Staff Engineer specializing in building efficient and scalable systems",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#14213d",
+  "theme_color": "#14213d",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
+

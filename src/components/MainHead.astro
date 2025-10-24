@@ -1,6 +1,6 @@
 ---
 import site from "../data/site.json";
-const {title, description} = site;
+const {title, description, url} = site;
 ---
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,23 +12,28 @@ const {title, description} = site;
 <meta name="description" content={description}>
 <meta name="author" content="Sharad Shinde">
 <meta name="robots" content="index, follow">
+<meta name="keywords" content="Sharad Shinde, Staff Engineer, Backend Engineer, Software Engineer, Full Stack Developer, Node.js, Python, Ruby, Go, System Design">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://sharadshinde.in">
+<meta property="og:url" content={url}>
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
-<meta property="og:image" content="https://shrd.in/assets/sharad.webp">
+<meta property="og:image" content={`${url}assets/sharad.webp`}>
 <meta property="og:image:alt" content="Sharad Shinde's Profile Picture">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content={title}>
 
 <!-- Twitter -->
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@shindesharad71">
+<meta name="twitter:creator" content="@shindesharad71">
 <meta name="twitter:title" content={title}>
 <meta name="twitter:description" content={description}>
-<meta name="twitter:url" content="https://sharadshinde.in">
+<meta name="twitter:image" content={`${url}assets/sharad.webp`}>
+<meta name="twitter:url" content={url}>
 
 <!-- Verification -->
 <meta name="google-site-verification" content="xdqQAL6KCVHCJcgHYDB6DDCnhx3QI6IMeen9BrKTveg">
@@ -38,8 +43,41 @@ const {title, description} = site;
 <meta name="theme-color" content="#14213d">
 <meta name="msapplication-TileColor" content="#14213d">
 
+<!-- Performance: Preconnect to external domains -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://unpkg.com">
+
 <!-- Links -->
-<link rel="canonical" href="https://sharadshinde.in">
+<link rel="canonical" href={url}>
 <link rel="icon" href="/favicon.ico">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</noscript>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sharad Shinde",
+  "url": "https://shrd.in",
+  "image": "https://shrd.in/assets/sharad.webp",
+  "jobTitle": "Staff Engineer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "HighLevel"
+  },
+  "alumniOf": "Pune University",
+  "sameAs": [
+    "https://github.com/shindesharad71",
+    "https://www.linkedin.com/in/shindesharad71/"
+  ],
+  "knowsAbout": ["Backend Engineering", "Node.js", "Python", "Ruby", "Go", "System Design", "MongoDB", "MySQL"]
+}
+</script>

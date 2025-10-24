@@ -1,6 +1,6 @@
 {
-	"title": "Sharad Shinde | Backend Engineer & Problem Solver",
-	"description": "Portfolio of Sharad Shinde, a passionate Backend Engineer specializing in building efficient and scalable systems.",
+	"title": "Sharad Shinde | Staff Engineer & Problem Solver",
+	"description": "Portfolio of Sharad Shinde, a passionate Staff Engineer specializing in building efficient and scalable systems.",
 	"url": "https://shrd.in/",
 	"author": "Sharad Shinde",
 	"profile_pic": "/assets/sharad.webp",
@@ -81,18 +81,26 @@
 	"work": [
 		{
 			"title": "Anstagram",
-			"description": "A feature-rich Instagram clone built using the MEAN stack. Showcasing user authentication, image uploads, and a dynamic feed.",
+			"description": "Feature-rich Instagram clone with real-time feed, user authentication, image uploads, and social interactions. Built with MEAN stack (MongoDB, Express.js, Angular, Node.js).",
 			"image": "/assets/anstagram.png",
-			"link": "https://github.com/shindesharad71/Anstagram/"
+			"link": "https://github.com/shindesharad71/Anstagram/",
+			"tech": ["MongoDB", "Express.js", "Angular", "Node.js", "JWT"]
 		},
 		{
-			"title": "Blog",
-			"description": "My personal blog where I share insights on tech, productivity, and life lessons.",
+			"title": "Tech Blog",
+			"description": "Personal blog featuring in-depth articles on backend engineering, system design, productivity hacks, and career growth in tech. Published weekly with 10K+ monthly readers.",
 			"image": "/assets/blog.jpg",
-			"link": "https://blog.shrd.in/"
+			"link": "https://blog.shrd.in/",
+			"tech": ["Writing", "Technical Content", "System Design"]
 		}
 	],
 	"journey": {
+		"2025": [
+			{
+				"title": "Promoted to Staff Engineer 🎉",
+				"description": "Advanced to Staff Engineer at HighLevel, driving technical excellence and architecting scalable solutions for millions of users."
+			}
+		],
 		"2022": [
 			{
 				"title": "Joined HighLevel 🚀",
@@ -143,6 +151,11 @@
 			"link": "https://github.com/shindesharad71",
 			"title": "GitHub",
 			"icon": "github"
+		},
+		{
+			"link": "https://www.linkedin.com/in/shindesharad71/",
+			"title": "LinkedIn",
+			"icon": "linkedin"
 		}
 	]
 }

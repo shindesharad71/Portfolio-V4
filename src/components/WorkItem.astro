@@ -3,13 +3,20 @@ const { item } = Astro.props;
 ---
 <div class="portfolio-item" data-aos="zoom-in">
     <div class="portfolio-item--inner">
-        <img height="350" width="350" src={item.image} alt={item.title}>
+        <img height="350" width="350" src={item.image} alt={item.title} loading="lazy" decoding="async">
     </div>
     <div class="portfolio-item--text">
         <strong>{item.title}</strong>
         <p>{item.description}</p>
+        {item.tech && item.tech.length > 0 &&
+            <div class="tech-stack">
+                {item.tech.map(tech => (
+                    <span class="tech-badge">{tech}</span>
+                ))}
+            </div>
+        }
         {item.link &&
-            <a href={item.link} target="_blank" rel="noopener noreferrer">View</a>
+            <a href={item.link} target="_blank" rel="noopener noreferrer">View Project</a>
         }
         {item.info &&
             <i>{item.info}</i>
@@ -36,7 +43,7 @@ const { item } = Astro.props;
         position: absolute;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,.4);
+        background: rgba(0,0,0,.85);
         top: 0;
         left: 0;
         display: flex;
@@ -47,13 +54,36 @@ const { item } = Astro.props;
         opacity: 0;
         transition: opacity .3s;
         text-align: center;
+        padding: 20px;
+        overflow-y: auto;
         p {
-            padding: 0 32px;
+            padding: 0 20px;
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+        strong {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            margin: 12px 0;
+            .tech-badge {
+                background: var(--color-orange);
+                color: var(--color-purple);
+                padding: 4px 12px;
+                border-radius: 12px;
+                font-size: 0.75rem;
+                font-weight: 600;
+            }
         }
         a {
             background: #fff;
-            padding: 10px 20px;
-            margin: 5px;
+            padding: 10px 24px;
+            margin: 8px;
             position: relative;
             border-radius: 5px;
             color: var(--color-orange);
@@ -61,6 +91,11 @@ const { item } = Astro.props;
             outline: none;
             cursor: pointer;
             text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+            &:hover {
+                transform: scale(1.05);
+            }
         }
     }
 }
