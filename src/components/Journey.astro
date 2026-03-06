@@ -1,50 +1,169 @@
 ---
 import site from "../data/site.json";
-const title = `Sharad's Journey: A Hitchhiker's Guide to My Life`;
 const {journey} = site;
+const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
 ---
-<section id="journey">
-    <h2>{title}</h2>
-    {Object.keys(journey).reverse().map((year, i) => (
-        <div class="timeline" data-aos="{i%2 ? "fade-up-left" : "fade-up-right"}">
-            <strong class="title">{year}</strong>
-            {journey[year].map(item => (
-                <div class="timeline-item">
-                    <div class="timeline-item--checkbox">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 11.080v0.92c-0.001 2.485-1.009 4.733-2.64 6.362s-3.88 2.634-6.365 2.632-4.734-1.009-6.362-2.64-2.634-3.879-2.633-6.365 1.009-4.733 2.64-6.362 3.88-2.634 6.365-2.633c1.33 0.001 2.586 0.289 3.649 0.775 0.502 0.23 1.096 0.008 1.325-0.494s0.008-1.096-0.494-1.325c-1.327-0.606-2.866-0.955-4.479-0.956-3.037-0.002-5.789 1.229-7.78 3.217s-3.224 4.74-3.226 7.777 1.229 5.789 3.217 7.78 4.739 3.225 7.776 3.226 5.789-1.229 7.78-3.217 3.225-4.739 3.227-7.777v-0.92c0-0.552-0.448-1-1-1s-1 0.448-1 1zM21.293 3.293l-9.293 9.302-2.293-2.292c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414l3 3c0.391 0.391 1.024 0.39 1.415 0l10-10.010c0.39-0.391 0.39-1.024-0.001-1.414s-1.024-0.39-1.414 0.001z"></path>
-                        </svg>
-                        <strong>{item.title}</strong>
-                    </div>
-                    <div class="timeline-item--paragraph">{item.description}</div>
+<section id="journey" aria-label="Career journey">
+    <h2 data-reveal>The Journey So Far</h2>
+    <div class="timeline" data-reveal>
+        {sortedYears.map((year) => (
+            <div class="timeline-year">
+                <div class="timeline-year-label">
+                    <span class="year-badge">{year}</span>
                 </div>
-            ))}
-        </div>
-    ))}
+                <div class="timeline-events">
+                    {journey[year].map(item => (
+                        <div class="timeline-event">
+                            <div class="event-dot"></div>
+                            <div class="event-content">
+                                <h3 class="event-title">{item.title}</h3>
+                                <p class="event-desc">{item.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        ))}
+    </div>
 </section>
 <style lang="scss">
-.timeline {
-    strong.title {
-        display: block;
-        margin-bottom: 2rem;
+  .timeline {
+    position: relative;
+    padding-left: var(--space-7);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: var(--space-2);
+      bottom: var(--space-2);
+      width: 2px;
+      background: linear-gradient(
+        to bottom,
+        var(--color-accent),
+        var(--color-border) 30%,
+        var(--color-border) 70%,
+        transparent
+      );
     }
-}
-.timeline-item {
-    margin-bottom: 20px;
-    &--checkbox {
-        svg {
-            width: 16px;
-            height: 16px;
-            margin-right: 16px;
-            fill: var(--color-orange);
-        }
+  }
+
+  .timeline-year {
+    margin-bottom: var(--space-8);
+
+    &:last-child {
+      margin-bottom: 0;
     }
-    &--center {
-        display: flex;
-        align-items: center;
+  }
+
+  .timeline-year-label {
+    position: relative;
+    margin-bottom: var(--space-5);
+    margin-left: calc(-1 * var(--space-7));
+    padding-left: var(--space-7);
+  }
+
+  .year-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-4);
+    background: var(--color-accent-glow);
+    color: var(--color-accent);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(252, 163, 17, 0.2);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: calc(-1 * var(--space-4) - 5px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--color-bg), 0 0 12px var(--color-accent-glow);
     }
-    &--paragraph {
-        margin-left: 32px;
+  }
+
+  .timeline-events {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .timeline-event {
+    position: relative;
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .event-dot {
+    position: absolute;
+    left: calc(-1 * var(--space-7) + 7px);
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: var(--color-bg);
+    border: 2px solid var(--color-text-subtle);
+    border-radius: 50%;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .event-content {
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    flex: 1;
+    transition: border-color var(--duration-normal) var(--ease-out);
+
+    &:hover {
+      border-color: var(--color-border-hover);
     }
-}
+  }
+
+  .event-title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    margin-bottom: var(--space-1);
+  }
+
+  .event-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 480px) {
+    .timeline {
+      padding-left: var(--space-6);
+
+      &::before {
+        left: 9px;
+      }
+    }
+
+    .timeline-year-label {
+      margin-left: calc(-1 * var(--space-6));
+      padding-left: var(--space-6);
+    }
+
+    .year-badge::before {
+      left: calc(-1 * var(--space-3) - 5px);
+    }
+
+    .event-dot {
+      left: calc(-1 * var(--space-6) + 5px);
+    }
+
+    .event-content {
+      padding: var(--space-3) var(--space-4);
+    }
+  }
 </style>

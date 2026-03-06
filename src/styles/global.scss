@@ -1,31 +1,109 @@
-// Base
+// Design System Tokens
 :root {
-  --color-purple: #14213d;
-  --color-orange: #fca311;
+  // Colors
+  --color-bg: #0a0f1e;
+  --color-bg-subtle: #111827;
+  --color-surface: rgba(255, 255, 255, 0.04);
+  --color-surface-hover: rgba(255, 255, 255, 0.08);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.16);
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-text-subtle: #64748b;
+  --color-accent: #fca311;
+  --color-accent-glow: rgba(252, 163, 17, 0.15);
+  --color-accent-hover: #fdb844;
+
+  // Spacing (8pt grid)
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
+  --space-11: 80px;
+  --space-12: 96px;
+  --space-13: 128px;
+
+  // Typography
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.25rem;
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  // Radii
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  // Shadows
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px var(--color-accent-glow);
+
+  // Transitions
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  // Layout
+  --max-width: 960px;
+  --header-height: 72px;
+
+  // Breakpoints (reference only — use in media queries)
+  // sm: 480px, md: 768px, lg: 1024px
 }
 
-// Optimize font loading
-@supports (font-display: swap) {
-  body {
-    font-display: swap;
-  }
+// Reset & Base
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--color-purple);
-  color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.5;
-  scroll-behavior: smooth;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @media (max-width: 700px) {
-    padding: 0 24px;
-  }
-}
-
-* {
-  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 img {
@@ -33,58 +111,119 @@ img {
   height: auto;
   display: block;
 }
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+}
+
 h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+  font-size: var(--text-4xl);
+  letter-spacing: -0.02em;
+  @media (min-width: 768px) {
+    font-size: var(--text-5xl);
+  }
 }
-h4 {
-  display: block;
-  margin-block-start: 1.33em;
-  margin-block-end: 1.33em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
+
+h2 {
+  font-size: var(--text-2xl);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-6);
+  @media (min-width: 768px) {
+    font-size: var(--text-3xl);
+  }
 }
+
+h3 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-5);
+  @media (min-width: 768px) {
+    font-size: var(--text-2xl);
+  }
+}
+
+p {
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+  &:hover {
+    color: var(--color-accent-hover);
+  }
+}
+
+// Section spacing
 section {
-  margin-bottom: 100px;
+  margin-bottom: var(--space-13);
+  @media (max-width: 768px) {
+    margin-bottom: var(--space-11);
+  }
 }
+
+// Utility: link with underline
 .link {
   text-decoration: none;
-  border-bottom: 1px solid var(--color-orange);
-  color: inherit;
-}
-.tooltip-container {
-  position: relative;
+  border-bottom: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  transition: all var(--duration-fast) var(--ease-out);
   &:hover {
-    .tooltip {
-      visibility: visible;
-      opacity: 1;
-    }
+    color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
   }
-  .tooltip {
-    visibility: hidden;
-    width: 100px;
-    background-color: #e5e5e5;
-    color: #000;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -50px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    &:after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: #e5e5e5 transparent transparent transparent;
-    }
+}
+
+// Skip link (accessibility)
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-weight: var(--weight-semibold);
+  z-index: 100;
+  &:focus {
+    top: var(--space-4);
+  }
+}
+
+// Focus styles (accessibility)
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+// Scroll reveal animation
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
   }
 }

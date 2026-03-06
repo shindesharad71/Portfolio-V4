@@ -1,22 +1,23 @@
 ---
 import WorkItem from './WorkItem.astro';
 import site from "../data/site.json";
-const title = `Things I'm proud of`;
 const {work} = site;
 ---
-<section id="work">
-    <h3>{title}</h3>
-    <div class="portfolio-grid">
+<section id="work" aria-label="Projects">
+    <h2 data-reveal>Things I'm proud of</h2>
+    <div class="work-grid">
         {work.map((item) => (
             <WorkItem item={item} />
         ))}
     </div>
 </section>
 <style lang="scss">
-.portfolio-grid {
+  .work-grid {
     display: grid;
-    @media (min-width: 450px) {
-        grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+
+    @media (min-width: 600px) {
+      grid-template-columns: repeat(2, 1fr);
     }
-}
+  }
 </style>
