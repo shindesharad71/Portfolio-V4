@@ -10,18 +10,87 @@ if (months < 0) {
     months += 12;
 }
 
-const title = `Hi! I'm Sharad - Staff Engineer`;
-const subTitle = `${years}+ years of building scalable systems & solving complex problems 🧑‍💻`;
-const description = `Staff Engineer at HighLevel, specializing in backend architecture, microservices, and system design. Based in Pune, India 🇮🇳. Passionate about writing clean code, mentoring developers, and building products that scale to millions of users. When I'm not architecting systems, you'll find me exploring new tech, listening to podcasts 🎧, or contributing to open source 💻.`;
-
+const title = `Hi! I'm Sharad`;
+const role = `Staff Engineer`;
+const subTitle = `${years}+ years of building scalable systems & solving complex problems`;
+const description = `Staff Engineer at HighLevel, specializing in backend architecture, microservices, and system design. Based in Pune, India. Passionate about writing clean code, mentoring developers, and building products that scale to millions of users.`;
 ---
-<section class="section">
-    <h1 data-aos="zoom-out">{title}&nbsp;<img height="50" width="50" src="/assets/hi.gif" alt="Hi" loading="eager"></h1>
-    <strong class="sub-title">{subTitle}</strong>
-    <p>{description}</p>
+<section class="intro" aria-label="Introduction" data-reveal>
+    <div class="intro-badge">
+        <span class="badge-dot"></span>
+        <span>Available for collaboration</span>
+    </div>
+    <h1>{title}&nbsp;<img height="40" width="40" src="/assets/hi.gif" alt="" loading="eager" aria-hidden="true"></h1>
+    <p class="intro-role">{role}</p>
+    <p class="intro-subtitle">{subTitle}</p>
+    <p class="intro-desc">{description}</p>
 </section>
 <style lang="scss">
-.sub-title {
-    font-size: 2rem;
-}
+  .intro {
+    padding-bottom: var(--space-10);
+  }
+
+  .intro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-7);
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+    img {
+      display: inline-block;
+    }
+  }
+
+  .intro-role {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    color: var(--color-accent);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.01em;
+    @media (min-width: 768px) {
+      font-size: var(--text-2xl);
+    }
+  }
+
+  .intro-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    font-weight: var(--weight-medium);
+    margin-bottom: var(--space-5);
+    @media (min-width: 768px) {
+      font-size: var(--text-xl);
+    }
+  }
+
+  .intro-desc {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    max-width: 640px;
+    line-height: var(--leading-relaxed);
+  }
 </style>

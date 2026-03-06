@@ -1,40 +1,53 @@
 ---
 import site from "../data/site.json";
 import SkillItem from './SkillItem.astro';
-const title = `These are skills I've mastered over the years`;
-const comfortable = `Skills I'm super comfortable with`;
-const mastering = `Skills I'm mastering`;
 const {skills} = site;
 ---
-<section id="skills">
-    <h2>{title}</h2>
-    
-    <strong>{comfortable}</strong>
-    <br />
-    <div class="skills" data-aos="fade-up-right">
-        {skills.comfortable.map((item) => (
-            <SkillItem item={item} />
-        ))}
+<section id="skills" aria-label="Technical skills">
+    <h2 data-reveal>Skills & Technologies</h2>
+
+    <div class="skill-group" data-reveal>
+        <h3 class="skill-label">Core Stack</h3>
+        <div class="skills-grid">
+            {skills.comfortable.map((item) => (
+                <SkillItem item={item} />
+            ))}
+        </div>
     </div>
 
-    <strong>{mastering}</strong>
-    <br />
-    <div class="skills" data-aos="fade-up-left">
-        {skills.mastering.map((item) => (
-            <SkillItem item={item} />
-        ))}
+    <div class="skill-group" data-reveal>
+        <h3 class="skill-label">Exploring</h3>
+        <div class="skills-grid">
+            {skills.mastering.map((item) => (
+                <SkillItem item={item} />
+            ))}
+        </div>
     </div>
 </section>
 <style lang="scss">
-.skills {
+  .skill-group {
+    margin-bottom: var(--space-8);
+  }
+
+  .skill-label {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--color-text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-4);
+  }
+
+  .skills-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    margin: 1rem 0;
-    @media (min-width: 700px) {
-            grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+
+    @media (min-width: 480px) {
+      grid-template-columns: repeat(4, 1fr);
     }
-    @media (min-width: 600px) {
-        grid-template-columns: repeat(8, 1fr);
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(6, 1fr);
     }
-}
+  }
 </style>
