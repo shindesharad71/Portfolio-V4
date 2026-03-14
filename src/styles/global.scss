@@ -112,6 +112,10 @@ body {
   overflow-x: hidden;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+}
+
 img {
   max-width: 100%;
   height: auto;

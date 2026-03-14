@@ -1,0 +1,142 @@
+---
+---
+<div id="cursor" class="cursor" aria-hidden="true">
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <span class="cursor-label"></span>
+</div>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const dot = cursor?.querySelector('.cursor-dot') as HTMLElement;
+  const ring = cursor?.querySelector('.cursor-ring') as HTMLElement;
+  const label = cursor?.querySelector('.cursor-label') as HTMLElement;
+
+  if (cursor && !('ontouchstart' in window) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.opacity = '1';
+    });
+
+    document.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+    });
+
+    function animate() {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+
+    const interactiveSelector = 'a, button, [role="button"], input, textarea, select';
+    const projectCardSelector = '.work-card';
+
+    document.addEventListener('mouseover', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest(projectCardSelector)) {
+        cursor.classList.add('cursor--project');
+        label.textContent = 'View';
+      } else if (target.closest(interactiveSelector)) {
+        cursor.classList.add('cursor--link');
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest(projectCardSelector)) {
+        cursor.classList.remove('cursor--project');
+        label.textContent = '';
+      } else if (target.closest(interactiveSelector)) {
+        cursor.classList.remove('cursor--link');
+      }
+    });
+  } else if (cursor) {
+    cursor.style.display = 'none';
+  }
+</script>
+
+<style lang="scss">
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out),
+                background 0.3s var(--ease-out);
+  }
+
+  .cursor-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid transparent;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s var(--ease-out), height 0.4s var(--ease-out),
+                border-color 0.3s var(--ease-out);
+  }
+
+  .cursor-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out);
+    color: #fff;
+  }
+
+  .cursor--link {
+    .cursor-dot {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .cursor-ring {
+      width: 40px;
+      height: 40px;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .cursor--project {
+    .cursor-dot {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .cursor-ring {
+      width: 80px;
+      height: 80px;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .cursor-label {
+      opacity: 1;
+    }
+  }
+</style>
