@@ -9,28 +9,102 @@ if (months < 0) {
     years--;
     months += 12;
 }
-
-const title = `Hi! I'm Sharad`;
-const role = `Staff Engineer`;
-const subTitle = `${years}+ years of building scalable systems & solving complex problems`;
-const description = `Staff Engineer at HighLevel, specializing in backend architecture, microservices, and system design. Based in Pune, India. Passionate about writing clean code, mentoring developers, and building products that scale to millions of users.`;
 ---
-<section class="intro" aria-label="Introduction" data-reveal>
-    <div class="intro-badge">
-        <span class="badge-dot"></span>
-        <span>Available for collaboration</span>
+<section class="hero" aria-label="Introduction">
+    <div class="hero-gradient" aria-hidden="true"></div>
+    <canvas id="hero-particles" aria-hidden="true"></canvas>
+
+    <div class="hero-content">
+        <div class="hero-badge" data-hero="badge">
+            <span class="badge-dot"></span>
+            <span>Available for collaboration</span>
+        </div>
+        <p class="hero-greeting" data-hero="greeting">Hi, I'm</p>
+        <h1 class="hero-name" data-hero="name">Sharad Shinde.</h1>
+        <p class="hero-role" data-hero="role">Staff Engineer building scalable systems</p>
+        <p class="hero-desc" data-hero="desc">
+            {years}+ years of architecting backend systems, microservices, and products
+            that scale to millions of users. Based in Pune, India.
+        </p>
+        <div class="hero-ctas" data-hero="ctas">
+            <a href="#work" class="cta cta-primary">View Work</a>
+            <a href="#footer" class="cta cta-secondary">Get in Touch</a>
+        </div>
     </div>
-    <h1>{title}&nbsp;<img height="40" width="40" src="/assets/hi.gif" alt="" loading="eager" aria-hidden="true"></h1>
-    <p class="intro-role">{role}</p>
-    <p class="intro-subtitle">{subTitle}</p>
-    <p class="intro-desc">{description}</p>
+
+    <div class="hero-scroll" data-hero="scroll" aria-hidden="true">
+        <span>scroll</span>
+        <div class="scroll-line"></div>
+    </div>
 </section>
-<style lang="scss">
-  .intro {
-    padding-bottom: var(--space-10);
+
+<script>
+  import { gsap } from 'gsap';
+  import { initParticles } from '../scripts/particles';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    tl.from('[data-hero="greeting"]', { opacity: 0, y: 20, duration: 0.5, ease: 'power3.out' })
+      .from('[data-hero="name"]', { clipPath: 'inset(0 100% 0 0)', duration: 0.8, ease: 'power3.out' }, '-=0.2')
+      .from('[data-hero="role"]', { opacity: 0, y: 20, duration: 0.5, ease: 'power3.out' }, '-=0.3')
+      .from('[data-hero="badge"]', { opacity: 0, x: -20, duration: 0.4, ease: 'power3.out' }, '-=0.2')
+      .from('[data-hero="desc"]', { opacity: 0, y: 15, duration: 0.5, ease: 'power3.out' }, '-=0.2')
+      .from('[data-hero="ctas"]', { opacity: 0, y: 15, duration: 0.4, ease: 'power3.out' }, '-=0.2')
+      .from('[data-hero="scroll"]', { opacity: 0, duration: 0.4, ease: 'power3.out' }, '-=0.1');
   }
 
-  .intro-badge {
+  const scrollIndicator = document.querySelector('.hero-scroll') as HTMLElement;
+  if (scrollIndicator) {
+    window.addEventListener('scroll', () => {
+      scrollIndicator.style.opacity = window.scrollY > 100 ? '0' : '1';
+    }, { passive: true });
+  }
+
+  const canvas = document.getElementById('hero-particles') as HTMLCanvasElement;
+  if (canvas && !prefersReducedMotion) {
+    initParticles(canvas);
+  }
+</script>
+
+<style lang="scss">
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--header-height) 0 var(--space-10);
+    overflow: hidden;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(ellipse, var(--color-accent-glow) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  #hero-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
@@ -41,6 +115,7 @@ const description = `Staff Engineer at HighLevel, specializing in backend archit
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
     margin-bottom: var(--space-7);
+    backdrop-filter: blur(8px);
   }
 
   .badge-dot {
@@ -56,41 +131,114 @@ const description = `Staff Engineer at HighLevel, specializing in backend archit
     50% { opacity: 0.4; }
   }
 
-  h1 {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-bottom: var(--space-2);
-    img {
-      display: inline-block;
-    }
-  }
-
-  .intro-role {
-    font-size: var(--text-xl);
-    font-weight: var(--weight-semibold);
-    color: var(--color-accent);
-    margin-bottom: var(--space-4);
-    letter-spacing: -0.01em;
-    @media (min-width: 768px) {
-      font-size: var(--text-2xl);
-    }
-  }
-
-  .intro-subtitle {
+  .hero-greeting {
+    font-family: var(--font-body);
     font-size: var(--text-lg);
-    color: var(--color-text);
+    color: var(--color-text-secondary);
     font-weight: var(--weight-medium);
-    margin-bottom: var(--space-5);
-    @media (min-width: 768px) {
-      font-size: var(--text-xl);
-    }
+    margin-bottom: var(--space-2);
   }
 
-  .intro-desc {
+  .hero-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-6xl);
+    font-weight: var(--weight-normal);
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: var(--space-4);
+    clip-path: inset(0 0 0 0);
+  }
+
+  .hero-role {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-medium);
+    color: var(--color-accent);
+    margin-bottom: var(--space-5);
+    @media (min-width: 768px) { font-size: var(--text-2xl); }
+  }
+
+  .hero-desc {
     font-size: var(--text-base);
     color: var(--color-text-secondary);
-    max-width: 640px;
+    max-width: 560px;
     line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-8);
+    @media (min-width: 768px) { font-size: var(--text-lg); }
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .cta-primary {
+    background: var(--color-accent);
+    color: #09090b;
+    &:hover {
+      background: var(--color-accent-hover);
+      color: #09090b;
+      box-shadow: 0 0 24px var(--color-accent-glow);
+    }
+  }
+
+  .cta-secondary {
+    background: var(--color-surface-1);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(8px);
+    &:hover {
+      background: var(--color-surface-2);
+      border-color: var(--color-border-hover);
+    }
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: var(--space-8);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    transition: opacity 0.3s var(--ease-out);
+
+    span {
+      font-size: var(--text-xs);
+      color: var(--color-text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, var(--color-text-tertiary), transparent);
+      animation: scroll-bounce 2s ease-in-out infinite;
+    }
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(8px); opacity: 0.4; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: var(--header-height) 0 var(--space-7); }
+    .hero-name { font-size: 2.25rem; }
   }
 </style>
