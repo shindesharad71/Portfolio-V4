@@ -1,169 +1,184 @@
 ---
 import site from "../data/site.json";
-const {journey} = site;
+const { journey } = site;
 const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
+
+const entries: Array<{ year: string; title: string; description: string; isFirst: boolean }> = [];
+sortedYears.forEach((year) => {
+    journey[year].forEach((item, i) => {
+        entries.push({ year, title: item.title, description: item.description, isFirst: i === 0 });
+    });
+});
 ---
 <section id="journey" aria-label="Career journey">
-    <h2 data-reveal>The Journey So Far</h2>
-    <div class="timeline" data-reveal>
-        {sortedYears.map((year) => (
-            <div class="timeline-year">
-                <div class="timeline-year-label">
-                    <span class="year-badge">{year}</span>
-                </div>
-                <div class="timeline-events">
-                    {journey[year].map(item => (
-                        <div class="timeline-event">
-                            <div class="event-dot"></div>
-                            <div class="event-content">
-                                <h3 class="event-title">{item.title}</h3>
-                                <p class="event-desc">{item.description}</p>
-                            </div>
-                        </div>
-                    ))}
+    <h2 data-reveal="heading">The Journey</h2>
+    <div class="timeline" id="timeline">
+        <div class="timeline-line" id="timeline-line" aria-hidden="true"></div>
+        {entries.map((entry, i) => (
+            <div class:list={['timeline-entry', i % 2 === 0 ? 'timeline-entry--right' : 'timeline-entry--left']} data-reveal="fade">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                {entry.isFirst && <span class="timeline-year">{entry.year}</span>}
+                <div class="timeline-card">
+                    <h3 class="timeline-title">{entry.title}</h3>
+                    <p class="timeline-desc">{entry.description}</p>
                 </div>
             </div>
         ))}
     </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const line = document.getElementById('timeline-line');
+    if (line) {
+      gsap.fromTo(line,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#timeline',
+            start: 'top 60%',
+            end: 'bottom 40%',
+            scrub: true,
+          },
+        }
+      );
+    }
+  }
+</script>
+
 <style lang="scss">
+  #journey {
+    padding: var(--space-14) 0;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    margin-bottom: var(--space-10);
+  }
+
   .timeline {
     position: relative;
-    padding-left: var(--space-7);
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: 11px;
-      top: var(--space-2);
-      bottom: var(--space-2);
-      width: 2px;
-      background: linear-gradient(
-        to bottom,
-        var(--color-accent),
-        var(--color-border) 30%,
-        var(--color-border) 70%,
-        transparent
-      );
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-accent), var(--color-border) 30%, var(--color-border) 70%, transparent);
+    transform-origin: top;
+    transform: scaleY(0);
+
+    @media (max-width: 768px) {
+      left: 16px;
+    }
+  }
+
+  .timeline-entry {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--space-8);
+    width: 50%;
+
+    &--right {
+      margin-left: 50%;
+      padding-left: var(--space-8);
+    }
+
+    &--left {
+      flex-direction: row-reverse;
+      padding-right: var(--space-8);
+      text-align: right;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-left: 0;
+      padding-left: var(--space-10) !important;
+      padding-right: 0 !important;
+      flex-direction: row !important;
+      text-align: left !important;
+    }
+  }
+
+  .timeline-dot {
+    position: absolute;
+    top: var(--space-5);
+    width: 10px;
+    height: 10px;
+    background: var(--color-bg);
+    border: 2px solid var(--color-accent);
+    border-radius: 50%;
+    z-index: 2;
+
+    .timeline-entry--right & { left: calc(-1 * var(--space-8) - 1px); }
+    .timeline-entry--left & { right: calc(-1 * var(--space-8) - 1px); left: auto; }
+
+    @media (max-width: 768px) {
+      left: 12px !important;
+      right: auto !important;
     }
   }
 
   .timeline-year {
-    margin-bottom: var(--space-8);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .timeline-year-label {
-    position: relative;
-    margin-bottom: var(--space-5);
-    margin-left: calc(-1 * var(--space-7));
-    padding-left: var(--space-7);
-  }
-
-  .year-badge {
+    position: absolute;
+    top: var(--space-4);
     display: inline-flex;
-    align-items: center;
     padding: var(--space-1) var(--space-4);
-    background: var(--color-accent-glow);
+    background: var(--color-accent-subtle);
     color: var(--color-accent);
     font-size: var(--text-sm);
     font-weight: var(--weight-bold);
     border-radius: var(--radius-full);
     border: 1px solid rgba(129, 140, 248, 0.2);
-    position: relative;
+    white-space: nowrap;
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: calc(-1 * var(--space-4) - 5px);
-      top: 50%;
-      transform: translateY(-50%);
-      width: 12px;
-      height: 12px;
-      background: var(--color-accent);
-      border-radius: 50%;
-      box-shadow: 0 0 0 4px var(--color-bg), 0 0 12px var(--color-accent-glow);
+    .timeline-entry--right & { left: calc(-1 * var(--space-8) - 60px); }
+    .timeline-entry--left & { right: calc(-1 * var(--space-8) - 60px); left: auto; }
+
+    @media (max-width: 768px) {
+      position: relative;
+      top: 0;
+      left: 0 !important;
+      right: auto !important;
+      margin-bottom: var(--space-3);
     }
   }
 
-  .timeline-events {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .timeline-event {
-    position: relative;
-    display: flex;
-    gap: var(--space-4);
-  }
-
-  .event-dot {
-    position: absolute;
-    left: calc(-1 * var(--space-7) + 7px);
-    top: 8px;
-    width: 8px;
-    height: 8px;
-    background: var(--color-bg);
-    border: 2px solid var(--color-text-tertiary);
-    border-radius: 50%;
-    flex-shrink: 0;
-    z-index: 1;
-  }
-
-  .event-content {
-    padding: var(--space-4) var(--space-5);
+  .timeline-card {
+    padding: var(--space-5);
     background: var(--color-surface-1);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    flex: 1;
+    backdrop-filter: blur(12px);
     transition: border-color var(--duration-normal) var(--ease-out);
+    width: 100%;
 
-    &:hover {
-      border-color: var(--color-border-hover);
-    }
+    &:hover { border-color: var(--color-border-hover); }
   }
 
-  .event-title {
+  .timeline-title {
+    font-family: var(--font-display);
     font-size: var(--text-base);
     font-weight: var(--weight-semibold);
-    margin-bottom: var(--space-1);
+    margin-bottom: var(--space-2);
   }
 
-  .event-desc {
+  .timeline-desc {
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
     line-height: var(--leading-relaxed);
     margin-bottom: 0;
-  }
-
-  @media (max-width: 480px) {
-    .timeline {
-      padding-left: var(--space-6);
-
-      &::before {
-        left: 9px;
-      }
-    }
-
-    .timeline-year-label {
-      margin-left: calc(-1 * var(--space-6));
-      padding-left: var(--space-6);
-    }
-
-    .year-badge::before {
-      left: calc(-1 * var(--space-3) - 5px);
-    }
-
-    .event-dot {
-      left: calc(-1 * var(--space-6) + 5px);
-    }
-
-    .event-content {
-      padding: var(--space-3) var(--space-4);
-    }
   }
 </style>
