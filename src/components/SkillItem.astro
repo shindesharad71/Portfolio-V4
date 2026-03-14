@@ -1,52 +1,96 @@
 ---
 import TechIcon from './icons/TechIcon.astro';
 const { item } = Astro.props;
+const isLarge = item.size === 'large';
 ---
-<div class="skill-card" tabindex="0" role="img" aria-label={item.name}>
+<div class:list={['skill-card', { 'skill-card--large': isLarge }]} tabindex="0" role="img" aria-label={item.name}>
     <div class="skill-icon">
         <TechIcon name={item.icon} />
     </div>
     <span class="skill-name">{item.name}</span>
+    {item.desc && <span class="skill-desc">{item.desc}</span>}
+    <div class="skill-glow" aria-hidden="true"></div>
 </div>
+
+<script>
+  document.querySelectorAll('.skill-card').forEach((card) => {
+    const glow = card.querySelector('.skill-glow') as HTMLElement;
+    if (!glow) return;
+    card.addEventListener('mousemove', (e) => {
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = (e as MouseEvent).clientX - rect.left;
+      const y = (e as MouseEvent).clientY - rect.top;
+      glow.style.background = `radial-gradient(circle at ${x}px ${y}px, var(--color-accent-glow), transparent 60%)`;
+      glow.style.opacity = '1';
+    });
+    card.addEventListener('mouseleave', () => {
+      glow.style.opacity = '0';
+    });
+  });
+</script>
+
 <style lang="scss">
   .skill-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
-    padding: var(--space-5) var(--space-4);
+    padding: var(--space-6) var(--space-4);
     background: var(--color-surface-1);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    cursor: default;
-    transition: background var(--duration-normal) var(--ease-out),
-                border-color var(--duration-normal) var(--ease-out),
-                transform var(--duration-normal) var(--ease-spring),
-                box-shadow var(--duration-normal) var(--ease-out);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: border-color var(--duration-normal) var(--ease-out),
+                transform var(--duration-normal) var(--ease-spring);
 
-    &:hover,
-    &:focus-visible {
-      background: var(--color-surface-2);
+    &:hover, &:focus-visible {
       border-color: var(--color-border-hover);
       transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
 
-      .skill-icon {
-        transform: scale(1.1);
-      }
+      .skill-icon { transform: scale(1.1); }
+      .skill-name { color: var(--color-text); }
+    }
+
+    &--large {
+      grid-column: span 2;
+      padding: var(--space-8) var(--space-6);
+      @media (max-width: 480px) { grid-column: span 2; }
     }
   }
 
+  .skill-glow {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
   .skill-icon {
+    position: relative;
+    z-index: 1;
     transition: transform var(--duration-normal) var(--ease-spring);
   }
 
   .skill-name {
-    font-size: var(--text-xs);
+    position: relative;
+    z-index: 1;
+    font-size: var(--text-sm);
     color: var(--color-text-secondary);
     font-weight: var(--weight-medium);
     text-align: center;
-    line-height: 1.2;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .skill-desc {
+    position: relative;
+    z-index: 1;
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    text-align: center;
   }
 </style>

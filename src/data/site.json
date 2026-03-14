@@ -14,56 +14,20 @@
 	],
 	"skills": {
 		"comfortable": [
-			{
-				"name": "HTML5",
-				"icon": "html5"
-			},
-			{
-				"name": "CSS3",
-				"icon": "css3"
-			},
-			{
-				"name": "JavaScript",
-				"icon": "javascript"
-			},
-			{
-				"name": "TypeScript",
-				"icon": "typescript"
-			},
-			{
-				"name": "Node.js",
-				"icon": "nodejs"
-			},
-			{
-				"name": "Angular",
-				"icon": "angularjs"
-			},
-			{
-				"name": "Git",
-				"icon": "git"
-			},
-			{
-				"name": "MySQL",
-				"icon": "mysql"
-			},
-			{
-				"name": "MongoDB",
-				"icon": "mongodb"
-			}
+			{ "name": "Node.js", "icon": "nodejs", "size": "large", "desc": "Backend & APIs" },
+			{ "name": "TypeScript", "icon": "typescript", "size": "large", "desc": "Type-safe code" },
+			{ "name": "JavaScript", "icon": "javascript", "size": "large", "desc": "Frontend & Full-stack" },
+			{ "name": "Angular", "icon": "angularjs" },
+			{ "name": "HTML5", "icon": "html5" },
+			{ "name": "CSS3", "icon": "css3" },
+			{ "name": "Git", "icon": "git" },
+			{ "name": "MySQL", "icon": "mysql" },
+			{ "name": "MongoDB", "icon": "mongodb" }
 		],
 		"mastering": [
-			{
-				"name": "Python",
-				"icon": "python"
-			},
-			{
-				"name": "Ruby",
-				"icon": "ruby"
-			},
-			{
-				"name": "Go",
-				"icon": "go"
-			}
+			{ "name": "Python", "icon": "python" },
+			{ "name": "Ruby", "icon": "ruby" },
+			{ "name": "Go", "icon": "go" }
 		]
 	},
 	"work": [
