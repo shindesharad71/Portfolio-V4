@@ -47,6 +47,72 @@ import '../styles/global.scss';
 
       (window as any).__lenis = lenis;
     </script>
+
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        const lenis = (window as any).__lenis;
+        if (lenis) {
+          lenis.on('scroll', ScrollTrigger.update);
+          gsap.ticker.add((time) => lenis.raf(time * 1000));
+          gsap.ticker.lagSmoothing(0);
+        }
+
+        gsap.utils.toArray<HTMLElement>('[data-reveal="heading"]').forEach((el) => {
+          gsap.from(el, {
+            clipPath: 'inset(100% 0 0 0)',
+            y: 20,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 80%', once: true },
+          });
+        });
+
+        gsap.utils.toArray<HTMLElement>('[data-reveal="text"]').forEach((el) => {
+          gsap.from(el, {
+            opacity: 0,
+            y: 30,
+            duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 75%', once: true },
+          });
+        });
+
+        gsap.utils.toArray<HTMLElement>('[data-reveal="cards"]').forEach((container) => {
+          const cards = container.children;
+          gsap.from(cards, {
+            scale: 0.95,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.08,
+            scrollTrigger: { trigger: container, start: 'top 65%', once: true },
+          });
+        });
+
+        gsap.utils.toArray<HTMLElement>('[data-reveal="fade"]').forEach((el) => {
+          gsap.from(el, {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 80%', once: true },
+          });
+        });
+      } else {
+        document.querySelectorAll('[data-reveal]').forEach((el) => {
+          (el as HTMLElement).style.opacity = '1';
+          (el as HTMLElement).style.transform = 'none';
+          (el as HTMLElement).style.clipPath = 'none';
+        });
+      }
+    </script>
   </body>
 </html>
 <style lang="scss">
