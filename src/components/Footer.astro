@@ -66,13 +66,13 @@ const {socials, author, profile_pic, resume} = site;
 
   .footer-desc {
     font-size: var(--text-base);
-    color: var(--color-text-muted);
+    color: var(--color-text-secondary);
     margin-bottom: var(--space-3);
   }
 
   .footer-resume {
     font-size: var(--text-sm);
-    color: var(--color-text-subtle);
+    color: var(--color-text-tertiary);
     margin-bottom: var(--space-6);
   }
 
@@ -87,16 +87,16 @@ const {socials, author, profile_pic, resume} = site;
     justify-content: center;
     width: 44px;
     height: 44px;
-    background: var(--color-surface);
+    background: var(--color-surface-1);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    color: var(--color-text-muted);
+    color: var(--color-text-secondary);
     transition: all var(--duration-normal) var(--ease-out);
 
     &:hover,
     &:focus-visible {
       color: var(--color-text);
-      background: var(--color-surface-hover);
+      background: var(--color-surface-2);
       border-color: var(--color-border-hover);
       transform: translateY(-2px);
     }
@@ -120,7 +120,7 @@ const {socials, author, profile_pic, resume} = site;
 
     p {
       font-size: var(--text-sm);
-      color: var(--color-text-subtle);
+      color: var(--color-text-tertiary);
       margin-bottom: 0;
     }
   }
