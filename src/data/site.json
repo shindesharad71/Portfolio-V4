@@ -6,23 +6,11 @@
 	"profile_pic": "/assets/sharad.webp",
 	"resume": "https://cv.shrd.in/",
 	"nav": [
-		{
-			"link": "#skills",
-			"name": "Skills"
-		},
-		{
-			"link": "#work",
-			"name": "Projects"
-		},
-		{
-			"link": "#footer",
-			"name": "Contact"
-		},
-		{
-			"link": "https://cv.shrd.in/",
-			"name": "Resume",
-			"target": "_blank"
-		}
+		{ "link": "#skills", "name": "Skills" },
+		{ "link": "#work", "name": "Work" },
+		{ "link": "#journey", "name": "Journey" },
+		{ "link": "#footer", "name": "Contact" },
+		{ "link": "https://cv.shrd.in/", "name": "Resume", "target": "_blank" }
 	],
 	"skills": {
 		"comfortable": [

@@ -4,7 +4,7 @@ const { nav } = site;
 ---
 <header id="header" role="banner">
   <nav class="header-nav" aria-label="Main navigation">
-    <a href="#" class="header-logo" aria-label="Back to top">SS</a>
+    <a href="#" class="header-logo" aria-label="Back to top">SB</a>
     <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span class="toggle-bar"></span>
       <span class="toggle-bar"></span>
@@ -15,8 +15,12 @@ const { nav } = site;
         <li>
           <a
             href={item.link}
+            class="nav-link"
             {...(item.target ? { target: item.target, rel: "noopener noreferrer" } : {})}
-          >{item.name}</a>
+          >
+            <span class="nav-link-text">{item.name}</span>
+            <span class="nav-link-line"></span>
+          </a>
         </li>
       ))}
     </ul>
@@ -27,19 +31,44 @@ const { nav } = site;
   const header = document.getElementById('header');
   const toggle = header?.querySelector('.mobile-toggle');
   const navLinks = header?.querySelector('.nav-links');
+  const links = header?.querySelectorAll('.nav-link');
 
+  let lastScroll = 0;
   const onScroll = () => {
-    header?.classList.toggle('scrolled', window.scrollY > 40);
+    const y = window.scrollY;
+    header?.classList.toggle('scrolled', y > 50);
+    if (y > lastScroll && y > 200) {
+      header?.classList.add('header-hidden');
+    } else {
+      header?.classList.remove('header-hidden');
+    }
+    lastScroll = y;
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  const sections = document.querySelectorAll('section[id], footer[id]');
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          links?.forEach((link) => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('active', href === `#${id}`);
+          });
+        }
+      });
+    },
+    { threshold: 0.3, rootMargin: '-72px 0px -40% 0px' }
+  );
+  sections.forEach((s) => sectionObserver.observe(s));
 
   toggle?.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!expanded));
     navLinks?.classList.toggle('open');
   });
-
   navLinks?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       toggle?.setAttribute('aria-expanded', 'false');
@@ -56,13 +85,18 @@ const { nav } = site;
     width: 100%;
     z-index: 50;
     transition: background var(--duration-normal) var(--ease-out),
-                box-shadow var(--duration-normal) var(--ease-out);
+                box-shadow var(--duration-normal) var(--ease-out),
+                transform var(--duration-normal) var(--ease-out);
 
     &.scrolled {
       background: rgba(9, 9, 11, 0.8);
       backdrop-filter: saturate(180%) blur(16px);
       -webkit-backdrop-filter: saturate(180%) blur(16px);
       box-shadow: 0 1px 0 var(--color-border);
+    }
+
+    &.header-hidden {
+      transform: translateY(-100%);
     }
   }
 
@@ -78,16 +112,14 @@ const { nav } = site;
   }
 
   .header-logo {
-    font-family: var(--font-display);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-xl);
+    font-family: var(--font-serif);
+    font-weight: var(--weight-normal);
+    font-size: var(--text-2xl);
     color: var(--color-text);
     text-decoration: none;
     letter-spacing: -0.02em;
     transition: color var(--duration-fast) var(--ease-out);
-    &:hover {
-      color: var(--color-accent);
-    }
+    &:hover { color: var(--color-accent); }
   }
 
   .mobile-toggle {
@@ -110,15 +142,9 @@ const { nav } = site;
     }
 
     &[aria-expanded="true"] {
-      .toggle-bar:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-      }
-      .toggle-bar:nth-child(2) {
-        opacity: 0;
-      }
-      .toggle-bar:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-      }
+      .toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .toggle-bar:nth-child(2) { opacity: 0; }
+      .toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     }
   }
 
@@ -127,62 +153,75 @@ const { nav } = site;
     align-items: center;
     gap: var(--space-1);
     list-style: none;
+  }
 
-    li a {
-      display: block;
-      padding: var(--space-2) var(--space-4);
-      color: var(--color-text-secondary);
-      text-decoration: none;
-      font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
-      border-radius: var(--radius-full);
-      transition: color var(--duration-fast) var(--ease-out),
-                  background var(--duration-fast) var(--ease-out);
+  .nav-link {
+    position: relative;
+    display: block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    transition: color var(--duration-fast) var(--ease-out);
 
-      &:hover {
-        color: var(--color-text);
-        background: var(--color-surface-2);
-      }
+    &:hover, &.active { color: var(--color-text); }
+
+    .nav-link-line {
+      position: absolute;
+      bottom: 4px;
+      left: var(--space-4);
+      right: var(--space-4);
+      height: 1px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    &:hover .nav-link-line,
+    &.active .nav-link-line {
+      transform: scaleX(1);
+    }
+
+    &.active::before {
+      content: '';
+      position: absolute;
+      left: calc(var(--space-4) - 8px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-accent);
     }
   }
 
   @media (max-width: 768px) {
-    .header-nav {
-      padding: var(--space-4) var(--space-5);
-    }
-
-    .mobile-toggle {
-      display: flex;
-    }
-
+    .header-nav { padding: var(--space-4) var(--space-5); }
+    .mobile-toggle { display: flex; }
     .nav-links {
       position: fixed;
       top: 0;
-      right: 0;
-      width: min(280px, 80vw);
+      left: 0;
+      width: 100%;
       height: 100dvh;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-      padding: calc(var(--header-height) + var(--space-4)) var(--space-6) var(--space-6);
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-4);
       background: rgba(9, 9, 11, 0.95);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      transform: translateX(100%);
-      transition: transform var(--duration-slow) var(--ease-out);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-normal) var(--ease-out);
 
-      &.open {
-        transform: translateX(0);
-      }
+      &.open { opacity: 1; pointer-events: all; }
 
-      li {
-        width: 100%;
-        a {
-          width: 100%;
-          padding: var(--space-4) var(--space-4);
-          font-size: var(--text-base);
-          border-radius: var(--radius-md);
-        }
+      li a {
+        font-size: var(--text-xl);
+        padding: var(--space-3) var(--space-6);
       }
     }
   }
