@@ -1,7 +1,7 @@
 ---
 const { item } = Astro.props;
 ---
-<article class="work-card" data-reveal>
+<article class="work-card card" data-reveal>
     <div class="work-card-image">
         <img src={item.image} alt={item.title} loading="lazy" decoding="async">
     </div>
@@ -24,21 +24,37 @@ const { item } = Astro.props;
         {item.info && <p class="work-card-info">{item.info}</p>}
     </div>
 </article>
-<style lang="scss">
+<style>
   .work-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
+    position: relative;
     overflow: hidden;
-    transition: border-color var(--duration-normal) var(--ease-out),
-                box-shadow var(--duration-normal) var(--ease-out);
 
-    &:hover {
-      border-color: var(--color-border-hover);
+    /* gradient hairline that fades in on hover */
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      background: var(--gradient-brand);
+      opacity: 0;
+      transition: opacity var(--duration-normal) var(--ease-out);
+      z-index: 1;
+    }
+
+    &:hover,
+    &:focus-within {
       box-shadow: var(--shadow-lg);
 
+      &::before {
+        opacity: 1;
+      }
+
       .work-card-image img {
-        transform: scale(1.03);
+        transform: scale(1.04);
+      }
+
+      .work-card-link {
+        gap: var(--space-3);
       }
     }
   }
@@ -57,7 +73,7 @@ const { item } = Astro.props;
   }
 
   .work-card-content {
-    padding: var(--space-5);
+    padding: var(--space-6);
   }
 
   .work-card-title {
@@ -84,6 +100,7 @@ const { item } = Astro.props;
     padding: var(--space-1) var(--space-3);
     background: var(--color-accent-glow);
     color: var(--color-accent);
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     font-weight: var(--weight-medium);
     border-radius: var(--radius-full);
@@ -100,12 +117,15 @@ const { item } = Astro.props;
     text-decoration: none;
     transition: gap var(--duration-fast) var(--ease-out);
 
-    &:hover {
-      gap: var(--space-3);
-    }
-
     svg {
       flex-shrink: 0;
+    }
+
+    /* stretched link: whole card is clickable */
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
     }
   }
 

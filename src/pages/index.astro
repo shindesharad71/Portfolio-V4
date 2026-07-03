@@ -8,7 +8,7 @@ import Work from '../components/Work.astro';
 import Journey from '../components/Journey.astro';
 import Footer from '../components/Footer.astro';
 // Global styles
-import '../styles/global.scss';
+import '../styles/global.css';
 ---
 <html lang="en">
   <head>
@@ -16,6 +16,7 @@ import '../styles/global.scss';
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
+    <div class="spotlight" aria-hidden="true"></div>
     <Header />
     <main id="main">
       <Intro />
@@ -25,7 +26,7 @@ import '../styles/global.scss';
       <Footer />
     </main>
 
-    <!-- Scroll reveal (replaces AOS — saves ~40KB) -->
+    <!-- Scroll reveal -->
     <script>
       const revealElements = document.querySelectorAll('[data-reveal]');
       if (revealElements.length && 'IntersectionObserver' in window) {
@@ -45,9 +46,24 @@ import '../styles/global.scss';
         revealElements.forEach((el) => el.classList.add('revealed'));
       }
     </script>
+
+    <!-- Cursor spotlight (pointer devices only) -->
+    <script>
+      const spotlight = document.querySelector<HTMLElement>('.spotlight');
+      if (spotlight && matchMedia('(pointer: fine)').matches) {
+        window.addEventListener(
+          'pointermove',
+          (e) => {
+            spotlight.style.setProperty('--spot-x', `${e.clientX}px`);
+            spotlight.style.setProperty('--spot-y', `${e.clientY}px`);
+          },
+          { passive: true }
+        );
+      }
+    </script>
   </body>
 </html>
-<style lang="scss">
+<style>
   main {
     padding-top: calc(var(--header-height) + var(--space-10));
     width: 100%;
