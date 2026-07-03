@@ -7,11 +7,7 @@ import Skills from '../components/Skills.astro';
 import Work from '../components/Work.astro';
 import Journey from '../components/Journey.astro';
 import Footer from '../components/Footer.astro';
-// Self-hosted fonts
-import '@fontsource-variable/inter';
-import '@fontsource-variable/space-grotesk';
-import '@fontsource-variable/jetbrains-mono';
-// Global styles
+// Global styles (fonts are @imported there)
 import '../styles/global.css';
 ---
 <html lang="en">
@@ -20,6 +16,7 @@ import '../styles/global.css';
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <div class="spotlight" aria-hidden="true"></div>
     <Header />
     <main id="main">
@@ -49,6 +46,15 @@ import '../styles/global.css';
       } else {
         revealElements.forEach((el) => el.classList.add('revealed'));
       }
+    </script>
+
+    <!-- Console easter egg -->
+    <script>
+      console.log(
+        '%c👋 Hey, fellow dev!%c\nCurious how this is built? Astro + plain CSS, no frameworks.\nSource: https://github.com/shindesharad71/Portfolio-V4',
+        'font-size:16px;font-weight:bold;color:#fca311;',
+        'font-size:12px;color:#94a3b8;'
+      );
     </script>
 
     <!-- Cursor spotlight (pointer devices only) -->
