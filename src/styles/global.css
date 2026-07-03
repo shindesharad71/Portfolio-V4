@@ -1,3 +1,8 @@
+/* Self-hosted variable fonts */
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource-variable/jetbrains-mono';
+
 /* Design System Tokens */
 :root {
   /* Colors */
@@ -330,6 +335,26 @@ section {
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
+}
+
+/* Scroll progress bar (CSS scroll-driven; browsers without support just don't show it) */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 60;
+  background: var(--gradient-brand);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  animation: grow-progress auto linear;
+  animation-timeline: scroll();
+}
+
+@keyframes grow-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
 /* Cursor spotlight */

@@ -23,6 +23,11 @@ const email = "shindesharad71@gmail.com";
                     </a>
                     <a class="btn btn-ghost" href={resume} target="_blank" rel="noopener noreferrer">View resume</a>
                 </div>
+                <button class="email-copy" type="button" data-email={email} aria-label="Copy email address">
+                    <span class="email-text">{email}</span>
+                    <svg class="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    <span class="copy-feedback" aria-live="polite"></span>
+                </button>
                 <div class="footer-socials">
                     {socials.map((social) => (
                         <a
@@ -53,9 +58,40 @@ const email = "shindesharad71@gmail.com";
     </div>
     <div class="footer-bottom">
         <p>&copy; {new Date().getFullYear()} {author}. Built with Astro.</p>
-        <a class="footer-source" href="https://github.com/shindesharad71/Portfolio-V4" target="_blank" rel="noopener noreferrer">View source</a>
+        <div class="footer-meta">
+            <span class="footer-time" id="local-time" title="My local time"></span>
+            <a class="footer-source" href="https://github.com/shindesharad71/Portfolio-V4" target="_blank" rel="noopener noreferrer">View source</a>
+        </div>
     </div>
 </footer>
+
+<script>
+  // Copy email to clipboard
+  const copyBtn = document.querySelector<HTMLButtonElement>('.email-copy');
+  copyBtn?.addEventListener('click', async () => {
+    const feedback = copyBtn.querySelector('.copy-feedback');
+    try {
+      await navigator.clipboard.writeText(copyBtn.dataset.email ?? '');
+      if (feedback) feedback.textContent = 'Copied ✓';
+    } catch {
+      if (feedback) feedback.textContent = 'Press ⌘C';
+    }
+    setTimeout(() => { if (feedback) feedback.textContent = ''; }, 2000);
+  });
+
+  // My local time (IST)
+  const timeEl = document.getElementById('local-time');
+  const renderTime = () => {
+    if (!timeEl) return;
+    const ist = new Date().toLocaleTimeString('en-IN', {
+      hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Kolkata',
+    });
+    timeEl.textContent = `IST ${ist} · Pune`;
+  };
+  renderTime();
+  setInterval(renderTime, 30_000);
+</script>
+
 <style>
   footer {
     margin-bottom: var(--space-10);
@@ -98,6 +134,36 @@ const email = "shindesharad71@gmail.com";
     flex-wrap: wrap;
     gap: var(--space-3);
     margin-bottom: var(--space-7);
+  }
+
+  .email-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: var(--space-7);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color var(--duration-fast) var(--ease-out);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-accent);
+    }
+  }
+
+  .email-text {
+    border-bottom: 1px dashed var(--color-border-hover);
+    padding-bottom: 1px;
+  }
+
+  .copy-feedback {
+    color: var(--color-accent);
+    font-size: var(--text-xs);
   }
 
   .footer-socials {
@@ -153,14 +219,21 @@ const email = "shindesharad71@gmail.com";
     }
   }
 
+  .footer-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .footer-time,
   .footer-source {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-subtle);
+  }
 
-    &:hover {
-      color: var(--color-accent);
-    }
+  .footer-source:hover {
+    color: var(--color-accent);
   }
 
   @media (max-width: 600px) {
