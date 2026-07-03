@@ -4,7 +4,10 @@ const {journey} = site;
 const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
 ---
 <section id="journey" aria-label="Career journey">
-    <h2 data-reveal>The Journey So Far</h2>
+    <div class="section-heading" data-reveal>
+        <span class="section-index">03</span>
+        <h2>The Journey So Far</h2>
+    </div>
     <div class="timeline" data-reveal>
         {sortedYears.map((year) => (
             <div class="timeline-year">
@@ -15,7 +18,7 @@ const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
                     {journey[year].map(item => (
                         <div class="timeline-event">
                             <div class="event-dot"></div>
-                            <div class="event-content">
+                            <div class="event-content card">
                                 <h3 class="event-title">{item.title}</h3>
                                 <p class="event-desc">{item.description}</p>
                             </div>
@@ -26,7 +29,7 @@ const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
         ))}
     </div>
 </section>
-<style lang="scss">
+<style>
   .timeline {
     position: relative;
     padding-left: var(--space-7);
@@ -69,6 +72,7 @@ const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
     padding: var(--space-1) var(--space-4);
     background: var(--color-accent-glow);
     color: var(--color-accent);
+    font-family: var(--font-mono);
     font-size: var(--text-sm);
     font-weight: var(--weight-bold);
     border-radius: var(--radius-full);
@@ -112,19 +116,16 @@ const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
     border-radius: 50%;
     flex-shrink: 0;
     z-index: 1;
+    transition: border-color var(--duration-normal) var(--ease-out);
+  }
+
+  .timeline-event:hover .event-dot {
+    border-color: var(--color-accent);
   }
 
   .event-content {
     padding: var(--space-4) var(--space-5);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
     flex: 1;
-    transition: border-color var(--duration-normal) var(--ease-out);
-
-    &:hover {
-      border-color: var(--color-border-hover);
-    }
   }
 
   .event-title {
@@ -160,10 +161,6 @@ const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
 
     .event-dot {
       left: calc(-1 * var(--space-6) + 5px);
-    }
-
-    .event-content {
-      padding: var(--space-3) var(--space-4);
     }
   }
 </style>

@@ -4,7 +4,10 @@ import SkillItem from './SkillItem.astro';
 const {skills} = site;
 ---
 <section id="skills" aria-label="Technical skills">
-    <h2 data-reveal>Skills & Technologies</h2>
+    <div class="section-heading" data-reveal>
+        <span class="section-index">01</span>
+        <h2>Skills &amp; Technologies</h2>
+    </div>
 
     <div class="skill-group" data-reveal>
         <h3 class="skill-label">Core Stack</h3>
@@ -24,17 +27,22 @@ const {skills} = site;
         </div>
     </div>
 </section>
-<style lang="scss">
+<style>
   .skill-group {
     margin-bottom: var(--space-8);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .skill-label {
-    font-size: var(--text-sm);
-    font-weight: var(--weight-semibold);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
     color: var(--color-text-subtle);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     margin-bottom: var(--space-4);
   }
 

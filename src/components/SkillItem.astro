@@ -2,13 +2,13 @@
 import TechIcon from './icons/TechIcon.astro';
 const { item } = Astro.props;
 ---
-<div class="skill-card" tabindex="0" role="img" aria-label={item.name}>
+<div class="skill-card card" tabindex="0" role="img" aria-label={item.name}>
     <div class="skill-icon">
         <TechIcon name={item.icon} />
     </div>
     <span class="skill-name">{item.name}</span>
 </div>
-<style lang="scss">
+<style>
   .skill-card {
     display: flex;
     flex-direction: column;
@@ -16,9 +16,6 @@ const { item } = Astro.props;
     justify-content: center;
     gap: var(--space-3);
     padding: var(--space-5) var(--space-4);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
     cursor: default;
     transition: background var(--duration-normal) var(--ease-out),
                 border-color var(--duration-normal) var(--ease-out),
@@ -27,19 +24,23 @@ const { item } = Astro.props;
 
     &:hover,
     &:focus-visible {
-      background: var(--color-surface-hover);
-      border-color: var(--color-border-hover);
       transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-md), 0 8px 24px rgba(252, 163, 17, 0.06);
 
       .skill-icon {
-        transform: scale(1.1);
+        transform: scale(1.12);
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+      }
+
+      .skill-name {
+        color: var(--color-text);
       }
     }
   }
 
   .skill-icon {
-    transition: transform var(--duration-normal) var(--ease-spring);
+    transition: transform var(--duration-normal) var(--ease-spring),
+                filter var(--duration-normal) var(--ease-out);
   }
 
   .skill-name {
@@ -48,5 +49,6 @@ const { item } = Astro.props;
     font-weight: var(--weight-medium);
     text-align: center;
     line-height: 1.2;
+    transition: color var(--duration-fast) var(--ease-out);
   }
 </style>

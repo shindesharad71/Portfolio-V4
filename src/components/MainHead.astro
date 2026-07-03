@@ -18,7 +18,7 @@ const {title, description, url} = site;
 <meta property="og:url" content={url}>
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
-<meta property="og:image" content={`${url}assets/sharad.webp`}>
+<meta property="og:image" content={`${url}assets/og.jpg`}>
 <meta property="og:image:alt" content="Sharad Shinde's Profile Picture">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -31,7 +31,7 @@ const {title, description, url} = site;
 <meta name="twitter:creator" content="@shindesharad71">
 <meta name="twitter:title" content={title}>
 <meta name="twitter:description" content={description}>
-<meta name="twitter:image" content={`${url}assets/sharad.webp`}>
+<meta name="twitter:image" content={`${url}assets/og.jpg`}>
 <meta name="twitter:url" content={url}>
 
 <!-- Verification -->
@@ -39,17 +39,13 @@ const {title, description, url} = site;
 <meta name="google-site-verification" content="95psw0DXvxCto91NvXCF9AjiNHvWelhIMJ6tdah-FXE">
 
 <!-- Theme -->
-<meta name="theme-color" content="#0a0f1e">
-<meta name="msapplication-TileColor" content="#0a0f1e">
+<meta name="theme-color" content="#05070d">
+<meta name="msapplication-TileColor" content="#05070d">
 
-<!-- Google Fonts: Inter + JetBrains Mono -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<!-- Links -->
+<!-- Links (fonts are self-hosted via @fontsource, imported in index.astro) -->
 <link rel="canonical" href={url}>
-<link rel="icon" href="/favicon.ico">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="manifest" href="/manifest.json">
 
 <!-- Structured Data -->
@@ -59,7 +55,7 @@ const {title, description, url} = site;
   "@type": "Person",
   "name": "Sharad Shinde",
   "url": "https://shrd.in",
-  "image": "https://shrd.in/assets/sharad.webp",
+  "image": "https://shrd.in/assets/og.jpg",
   "jobTitle": "Staff Engineer",
   "worksFor": {
     "@type": "Organization",

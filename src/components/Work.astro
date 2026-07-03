@@ -4,17 +4,20 @@ import site from "../data/site.json";
 const {work} = site;
 ---
 <section id="work" aria-label="Projects">
-    <h2 data-reveal>Things I'm proud of</h2>
+    <div class="section-heading" data-reveal>
+        <span class="section-index">02</span>
+        <h2>Things I'm proud of</h2>
+    </div>
     <div class="work-grid">
         {work.map((item) => (
             <WorkItem item={item} />
         ))}
     </div>
 </section>
-<style lang="scss">
+<style>
   .work-grid {
     display: grid;
-    gap: var(--space-5);
+    gap: var(--space-6);
 
     @media (min-width: 600px) {
       grid-template-columns: repeat(2, 1fr);
