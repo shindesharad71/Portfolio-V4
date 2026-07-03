@@ -46,6 +46,26 @@ const { nav } = site;
       navLinks?.classList.remove('open');
     });
   });
+
+  // Highlight the nav link for the section in view
+  const anchorLinks = [...(navLinks?.querySelectorAll<HTMLAnchorElement>('a[href^="#"]') ?? [])];
+  const sections = anchorLinks
+    .map(link => document.querySelector(link.hash))
+    .filter((s): s is Element => !!s);
+  if (sections.length && 'IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          anchorLinks.forEach(link =>
+            link.classList.toggle('active', link.hash === `#${entry.target.id}`)
+          );
+        });
+      },
+      { rootMargin: '-30% 0px -60% 0px' }
+    );
+    sections.forEach(s => sectionObserver.observe(s));
+  }
 </script>
 
 <style>
@@ -142,6 +162,11 @@ const { nav } = site;
       &:hover {
         color: var(--color-text);
         background: var(--color-surface-hover);
+      }
+
+      &.active {
+        color: var(--color-accent);
+        background: var(--color-accent-glow);
       }
     }
   }
