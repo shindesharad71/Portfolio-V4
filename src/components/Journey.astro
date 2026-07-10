@@ -1,27 +1,40 @@
 ---
 import site from "../data/site.json";
 const {journey} = site;
-const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
+
+// A drawing's revision block: oldest = Rev A, ascending. Display newest first.
+const ascYears = Object.keys(journey).sort((a, b) => Number(a) - Number(b));
+const revOf: Record<string, string> = Object.fromEntries(
+    ascYears.map((y, i) => [y, String.fromCharCode(65 + i)])
+);
+const rows = [...ascYears].reverse();
+const latest = rows[0];
 ---
 <section id="journey" aria-label="Career journey">
     <div class="section-heading" data-reveal>
         <span class="section-index">03</span>
-        <h2>The Journey So Far</h2>
+        <h2>Revision History</h2>
     </div>
-    <div class="timeline" data-reveal>
-        {sortedYears.map((year) => (
-            <div class="timeline-year">
-                <div class="timeline-year-label">
-                    <span class="year-badge">{year}</span>
+
+    <div class="revtable" data-reveal>
+        <div class="rev-head" aria-hidden="true">
+            <span>Rev</span>
+            <span>Year</span>
+            <span>Change</span>
+        </div>
+
+        {rows.map((year) => (
+            <div class={`rev-row${year === latest ? ' is-current' : ''}`}>
+                <div class="rev-meta">
+                    <span class="rev-badge">{revOf[year]}</span>
+                    <span class="rev-year">{year}</span>
+                    {year === latest && <span class="rev-current label">● Current</span>}
                 </div>
-                <div class="timeline-events">
-                    {journey[year].map(item => (
-                        <div class="timeline-event">
-                            <div class="event-dot"></div>
-                            <div class="event-content card">
-                                <h3 class="event-title">{item.title}</h3>
-                                <p class="event-desc">{item.description}</p>
-                            </div>
+                <div class="rev-changes">
+                    {journey[year].map((item) => (
+                        <div class="rev-change">
+                            <h3 class="rev-title">{item.title}</h3>
+                            <p class="rev-desc">{item.description}</p>
                         </div>
                     ))}
                 </div>
@@ -30,137 +43,118 @@ const sortedYears = Object.keys(journey).sort((a, b) => Number(b) - Number(a));
     </div>
 </section>
 <style>
-  .timeline {
-    position: relative;
-    padding-left: var(--space-7);
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: 11px;
-      top: var(--space-2);
-      bottom: var(--space-2);
-      width: 2px;
-      background: linear-gradient(
-        to bottom,
-        var(--color-accent),
-        var(--color-border) 30%,
-        var(--color-border) 70%,
-        transparent
-      );
-    }
+  .revtable {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
   }
 
-  .timeline-year {
-    margin-bottom: var(--space-8);
+  .rev-head {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-3) var(--space-5);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--track-label);
+    color: var(--paper-faint);
+  }
+  /* header has 3 spans but 2 columns: fold Rev+Year into first cell */
+  .rev-head span:first-child { grid-column: 1; }
+  .rev-head span:nth-child(2) { display: none; }
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+  .rev-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--duration-normal) var(--ease-out);
+
+    &:last-child { border-bottom: 0; }
+
+    &:hover { background: var(--color-surface); }
   }
 
-  .timeline-year-label {
-    position: relative;
-    margin-bottom: var(--space-5);
-    margin-left: calc(-1 * var(--space-7));
-    padding-left: var(--space-7);
+  .rev-changes { min-width: 0; }
+
+  .rev-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    align-content: flex-start;
   }
 
-  .year-badge {
+  .rev-badge {
     display: inline-flex;
     align-items: center;
-    padding: var(--space-1) var(--space-4);
-    background: var(--color-accent-glow);
-    color: var(--color-accent);
+    justify-content: center;
+    width: 28px;
+    height: 28px;
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     font-weight: var(--weight-bold);
-    border-radius: var(--radius-full);
-    border: 1px solid rgba(252, 163, 17, 0.2);
-    position: relative;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: calc(-1 * var(--space-4) - 5px);
-      top: 50%;
-      transform: translateY(-50%);
-      width: 12px;
-      height: 12px;
-      background: var(--color-accent);
-      border-radius: 50%;
-      box-shadow: 0 0 0 4px var(--color-bg), 0 0 12px var(--color-accent-glow);
-    }
+    color: var(--paper-muted);
+    border: 1px solid var(--color-border-hover);
+    border-radius: var(--radius-sm);
   }
 
-  .timeline-events {
+  .rev-year {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    color: var(--paper);
+    letter-spacing: 0.02em;
+  }
+
+  .rev-current {
+    flex-basis: 100%;
+    color: var(--redline);
+  }
+
+  .is-current .rev-badge {
+    color: var(--redline);
+    border-color: var(--redline);
+    background: var(--color-accent-glow);
+  }
+
+  .rev-changes {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
   }
 
-  .timeline-event {
-    position: relative;
-    display: flex;
-    gap: var(--space-4);
+  .rev-change:not(:last-child) {
+    padding-bottom: var(--space-4);
+    border-bottom: 1px dashed var(--color-border);
   }
 
-  .event-dot {
-    position: absolute;
-    left: calc(-1 * var(--space-7) + 7px);
-    top: 8px;
-    width: 8px;
-    height: 8px;
-    background: var(--color-bg);
-    border: 2px solid var(--color-text-subtle);
-    border-radius: 50%;
-    flex-shrink: 0;
-    z-index: 1;
-    transition: border-color var(--duration-normal) var(--ease-out);
-  }
-
-  .timeline-event:hover .event-dot {
-    border-color: var(--color-accent);
-  }
-
-  .event-content {
-    padding: var(--space-4) var(--space-5);
-    flex: 1;
-  }
-
-  .event-title {
+  .rev-title {
     font-size: var(--text-base);
     font-weight: var(--weight-semibold);
     margin-bottom: var(--space-1);
   }
 
-  .event-desc {
+  .rev-desc {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
     margin-bottom: 0;
   }
 
-  @media (max-width: 480px) {
-    .timeline {
-      padding-left: var(--space-6);
-
-      &::before {
-        left: 9px;
-      }
+  @media (max-width: 560px) {
+    .rev-head { grid-template-columns: 1fr; }
+    .rev-row {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
     }
-
-    .timeline-year-label {
-      margin-left: calc(-1 * var(--space-6));
-      padding-left: var(--space-6);
-    }
-
-    .year-badge::before {
-      left: calc(-1 * var(--space-3) - 5px);
-    }
-
-    .event-dot {
-      left: calc(-1 * var(--space-6) + 5px);
+    .rev-meta {
+      padding-bottom: var(--space-2);
+      border-bottom: 1px dashed var(--color-border);
     }
   }
 </style>
