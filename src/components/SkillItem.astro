@@ -1,8 +1,9 @@
 ---
 import TechIcon from './icons/TechIcon.astro';
-const { item } = Astro.props;
+const { item, ref } = Astro.props;
 ---
 <div class="skill-card card" tabindex="0" role="img" aria-label={item.name}>
+    <span class="skill-ref">{ref}</span>
     <div class="skill-icon">
         <TechIcon name={item.icon} />
     </div>
@@ -10,43 +11,76 @@ const { item } = Astro.props;
 </div>
 <style>
   .skill-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
-    padding: var(--space-5) var(--space-4);
+    padding: var(--space-6) var(--space-4) var(--space-5);
     cursor: default;
+    overflow: hidden;
     transition: background var(--duration-normal) var(--ease-out),
-                border-color var(--duration-normal) var(--ease-out),
-                transform var(--duration-normal) var(--ease-spring),
-                box-shadow var(--duration-normal) var(--ease-out);
+                border-color var(--duration-normal) var(--ease-out);
+
+    /* redline corner tick, drawn in on hover */
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      border-top: 1.5px solid var(--redline);
+      border-right: 1.5px solid var(--redline);
+      opacity: 0;
+      transition: opacity var(--duration-fast) var(--ease-out);
+    }
 
     &:hover,
     &:focus-visible {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md), 0 8px 24px rgba(252, 163, 17, 0.06);
+      border-color: var(--color-border-hover);
 
-      .skill-icon {
-        transform: scale(1.12);
-        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
-      }
+      &::after { opacity: 1; }
 
-      .skill-name {
-        color: var(--color-text);
-      }
+      .skill-name { color: var(--paper); }
+      .skill-ref { color: var(--redline); }
+      .skill-icon { filter: none; }
     }
   }
 
+  .skill-ref {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    color: var(--paper-faint);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
   .skill-icon {
-    transition: transform var(--duration-normal) var(--ease-spring),
-                filter var(--duration-normal) var(--ease-out);
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* drafted (muted) by default; true colour on inspect/hover */
+    filter: grayscale(0.85) brightness(1.08) opacity(0.82);
+    transition: filter var(--duration-normal) var(--ease-out);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skill-icon { transition: none; }
   }
 
   .skill-name {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
-    color: var(--color-text-muted);
+    color: var(--paper-muted);
     font-weight: var(--weight-medium);
+    letter-spacing: 0.02em;
     text-align: center;
     line-height: 1.2;
     transition: color var(--duration-fast) var(--ease-out);

@@ -1,29 +1,71 @@
-/* Self-hosted variable fonts */
-@import '@fontsource-variable/inter';
-@import '@fontsource-variable/space-grotesk';
-@import '@fontsource-variable/jetbrains-mono';
+/* Self-hosted variable fonts — IBM Plex (systems/engineering heritage) */
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
+@import '@fontsource/ibm-plex-mono/700.css';
 
-/* Design System Tokens */
+/* ============================================================
+   CYANOTYPE BLUEPRINT — design tokens
+   The page is one technical drawing set: blueprint ground,
+   paper-white linework, one warm "redline" signal for live states.
+   ============================================================ */
 :root {
-  /* Colors */
-  --color-bg: #05070d;
-  --color-bg-subtle: #0b0f1a;
-  --color-surface: rgba(255, 255, 255, 0.03);
-  --color-surface-hover: rgba(255, 255, 255, 0.06);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(255, 255, 255, 0.18);
-  --color-text: #f1f5f9;
-  --color-text-muted: #98a4b5;
-  --color-text-subtle: #64748b;
-  --color-accent: #fca311;
-  --color-accent-glow: rgba(252, 163, 17, 0.14);
-  --color-accent-hover: #fdb844;
-  --color-accent-2: #8b8bf9;
-  --color-accent-2-glow: rgba(139, 139, 249, 0.12);
+  /* Color — cyanotype print */
+  --blueprint: #0d2a4c;         /* engineering blue ground */
+  --blueprint-deep: #091d36;    /* recessed panels / footer */
+  --paper: #eaf2ff;             /* primary ink / linework */
+  --paper-muted: #aec6e4;       /* secondary text */
+  --paper-faint: #86a3c9;       /* tertiary / captions (AA on blueprint) */
+  --line: #4e7cb0;              /* hairlines, grid, borders */
+  --redline: #ff6b4a;           /* THE signal — live/current/hover only */
+  --redline-hover: #ff8360;
 
-  /* Gradients */
-  --gradient-brand: linear-gradient(100deg, #fca311 0%, #ff8c5a 50%, #ff6b95 100%);
-  --gradient-border: linear-gradient(140deg, rgba(252, 163, 17, 0.5), rgba(255, 255, 255, 0.06) 40%, rgba(139, 139, 249, 0.4));
+  /* Semantic aliases (keep names stable across components) */
+  --color-bg: var(--blueprint);
+  --color-bg-subtle: var(--blueprint-deep);
+  --color-surface: rgba(130, 170, 220, 0.05);
+  --color-surface-hover: rgba(130, 170, 220, 0.10);
+  --color-border: rgba(120, 160, 210, 0.22);
+  --color-border-hover: rgba(120, 160, 210, 0.48);
+  --color-text: var(--paper);
+  --color-text-muted: var(--paper-muted);
+  --color-text-subtle: var(--paper-faint);
+  --color-accent: var(--redline);
+  --color-accent-hover: var(--redline-hover);
+  --color-accent-glow: rgba(255, 107, 74, 0.16);
+
+  /* Blueprint grid */
+  --grid-minor: rgba(120, 160, 210, 0.07);
+  --grid-major: rgba(120, 160, 210, 0.11);
+  --grid-size: 26px;
+
+  /* Fonts */
+  --font-display: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-body: 'IBM Plex Sans Variable', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: clamp(1.65rem, 1.35rem + 1.4vw, 2.1rem);
+  --text-4xl: clamp(2.1rem, 1.7rem + 1.9vw, 2.9rem);
+  --text-hero: clamp(2.35rem, 1.5rem + 3.9vw, 4rem);
+
+  --leading-tight: 1.12;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.72;
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --track-title: 0.06em;   /* title-block lettering */
+  --track-label: 0.14em;   /* small caps labels */
 
   /* Spacing (8pt grid) */
   --space-1: 4px;
@@ -40,42 +82,17 @@
   --space-12: 96px;
   --space-13: 128px;
 
-  /* Typography */
-  --font-display: 'Space Grotesk Variable', 'Inter Variable', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono Variable', 'Fira Code', monospace;
-
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem);
-  --text-4xl: clamp(2.25rem, 1.8rem + 2vw, 3rem);
-  --text-hero: clamp(2.75rem, 1.8rem + 4.5vw, 4.75rem);
-
-  --leading-tight: 1.1;
-  --leading-normal: 1.6;
-  --leading-relaxed: 1.75;
-
-  --weight-normal: 400;
-  --weight-medium: 500;
-  --weight-semibold: 600;
-  --weight-bold: 700;
-
-  /* Radii */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  /* Radii — square, like a drawing */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.35);
-  --shadow-glow: 0 0 24px var(--color-accent-glow);
+  /* Shadows — flat by default; drawings don't float */
+  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 2px 0 rgba(0, 0, 0, 0.22);
+  --shadow-lg: 0 10px 34px rgba(4, 12, 26, 0.5);
 
   /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -86,7 +103,8 @@
 
   /* Layout */
   --max-width: 1024px;
-  --header-height: 72px;
+  --header-height: 68px;
+  --frame-inset: 14px;
 }
 
 /* Reset & Base */
@@ -100,10 +118,8 @@
 
 html {
   scroll-behavior: smooth;
-  /* anchor targets land below the fixed header */
   scroll-padding-top: calc(var(--header-height) + var(--space-6));
   -webkit-text-size-adjust: 100%;
-  /* native scrollbars & form controls render dark */
   color-scheme: dark;
 }
 
@@ -118,28 +134,65 @@ body {
   overflow-x: hidden;
 }
 
-/* Aurora background glows */
+/* Blueprint grid substrate + a single soft top glow for depth */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 55% 40% at 18% -8%, rgba(252, 163, 17, 0.09), transparent 65%),
-    radial-gradient(ellipse 50% 45% at 88% 12%, rgba(139, 139, 249, 0.08), transparent 65%),
-    radial-gradient(ellipse 60% 50% at 50% 110%, rgba(56, 122, 223, 0.06), transparent 70%);
+  background-image:
+    linear-gradient(var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px);
+  background-size:
+    var(--grid-size) var(--grid-size),
+    var(--grid-size) var(--grid-size),
+    calc(var(--grid-size) * 5) calc(var(--grid-size) * 5),
+    calc(var(--grid-size) * 5) calc(var(--grid-size) * 5);
 }
 
-/* Film grain */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.35;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(90, 150, 220, 0.10), transparent 70%);
+}
+
+/* Sheet frame — the drawing border with redline corner ticks */
+.sheet-frame {
+  position: fixed;
+  inset: var(--frame-inset);
+  z-index: 40;
+  pointer-events: none;
+  border: 1px solid var(--color-border);
+}
+.sheet-frame::before,
+.sheet-frame::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--redline);
+}
+.sheet-frame::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.sheet-frame::after {
+  right: -1px;
+  bottom: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+
+@media (max-width: 640px) {
+  :root { --frame-inset: 8px; }
 }
 
 img {
@@ -149,32 +202,39 @@ img {
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: var(--color-bg);
+  background: var(--redline);
+  color: var(--blueprint-deep);
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
+/* Typography ------------------------------------------------- */
+/* h1/h2 = title-block lettering (mono, uppercase, tracked).
+   h3 = readable Plex Sans for card & event titles. */
+h1, h2 {
   font-family: var(--font-display);
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
+  text-transform: uppercase;
+  letter-spacing: var(--track-title);
   color: var(--color-text);
 }
 
 h1 {
   font-size: var(--text-hero);
-  letter-spacing: -0.03em;
+  font-weight: var(--weight-bold);
 }
 
 h2 {
   font-size: var(--text-3xl);
-  letter-spacing: -0.02em;
 }
 
-h3 {
-  font-size: var(--text-xl);
-  letter-spacing: -0.01em;
+h3, h4, h5, h6 {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  line-height: 1.25;
+  color: var(--color-text);
 }
+
+h3 { font-size: var(--text-xl); }
 
 p {
   color: var(--color-text-muted);
@@ -183,28 +243,24 @@ p {
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--redline);
   text-decoration: none;
   transition: color var(--duration-fast) var(--ease-out);
 
   &:hover {
-    color: var(--color-accent-hover);
+    color: var(--redline-hover);
   }
 }
 
-/* Section spacing */
-section {
-  margin-bottom: var(--space-13);
-
-  @media (max-width: 768px) {
-    margin-bottom: var(--space-11);
-  }
+/* Redline highlight — replaces the old animated gradient text */
+.gradient-text {
+  color: var(--redline);
 }
 
-/* Section heading: mono index + title + rule */
+/* Section heading → figure reference + measurement rule ------ */
 .section-heading {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: var(--space-4);
   margin-bottom: var(--space-8);
 
@@ -212,88 +268,93 @@ section {
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     font-weight: var(--weight-medium);
-    color: var(--color-accent);
+    letter-spacing: var(--track-label);
+    color: var(--redline);
+    white-space: nowrap;
+
+    &::before {
+      content: 'FIG.';
+      color: var(--paper-faint);
+    }
   }
 
   h2 {
     white-space: nowrap;
+    font-size: var(--text-2xl);
   }
 
+  /* dimension rule with an end tick */
   &::after {
     content: '';
     flex: 1;
+    min-width: var(--space-6);
+    align-self: center;
     height: 1px;
-    background: linear-gradient(to right, var(--color-border), transparent);
+    background:
+      linear-gradient(to right, var(--color-border-hover), var(--color-border) 60%, transparent),
+      linear-gradient(var(--line), var(--line));
+    background-repeat: no-repeat;
+    background-size: 100% 1px, 1px 9px;
+    background-position: left center, right center;
+  }
+
+  @media (max-width: 560px) {
+    gap: var(--space-3);
+    h2 { font-size: var(--text-xl); white-space: normal; }
   }
 }
 
-/* Gradient text with a slow ambient shimmer */
-.gradient-text {
-  background: var(--gradient-brand);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient-shift 6s ease-in-out infinite alternate;
-}
-
-@keyframes gradient-shift {
-  from { background-position: 0% 50%; }
-  to { background-position: 100% 50%; }
-}
-
-/* Buttons */
+/* Buttons ---------------------------------------------------- */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-3) var(--space-5);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  font-family: var(--font-body);
-  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-out);
+  transition: background var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out),
+              color var(--duration-normal) var(--ease-out);
 }
 
 .btn-primary {
-  background: var(--color-accent);
-  color: #1a1205;
+  background: var(--redline);
+  color: var(--blueprint-deep);
 
   &:hover,
   &:focus-visible {
-    background: var(--color-accent-hover);
-    color: #1a1205;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
+    background: var(--redline-hover);
+    color: var(--blueprint-deep);
   }
 }
 
 .btn-ghost {
-  background: var(--color-surface);
+  background: transparent;
   color: var(--color-text);
-  border-color: var(--color-border);
+  border-color: var(--color-border-hover);
 
   &:hover,
   &:focus-visible {
-    color: var(--color-text);
-    background: var(--color-surface-hover);
-    border-color: var(--color-border-hover);
-    transform: translateY(-2px);
+    color: var(--redline);
+    border-color: var(--redline);
+    background: var(--color-accent-glow);
   }
 }
 
-/* Glass card with gradient border on hover */
+/* Plate — a framed drawing card ------------------------------ */
 .card {
   position: relative;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   transition: background var(--duration-normal) var(--ease-out),
-              border-color var(--duration-normal) var(--ease-out),
-              transform var(--duration-normal) var(--ease-out),
-              box-shadow var(--duration-normal) var(--ease-out);
+              border-color var(--duration-normal) var(--ease-out);
 
   &:hover {
     background: var(--color-surface-hover);
@@ -301,17 +362,28 @@ section {
   }
 }
 
-/* Utility: link with underline */
+/* Utility: measured link with a dashed baseline */
 .link {
   text-decoration: none;
-  border-bottom: 1px solid var(--color-accent);
-  color: var(--color-accent);
-  transition: all var(--duration-fast) var(--ease-out);
+  border-bottom: 1px solid var(--redline);
+  color: var(--redline);
+  transition: color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
 
   &:hover {
-    color: var(--color-accent-hover);
-    border-color: var(--color-accent-hover);
+    color: var(--redline-hover);
+    border-color: var(--redline-hover);
   }
+}
+
+/* Small uppercase label helper */
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--paper-faint);
 }
 
 /* Skip link (accessibility) */
@@ -319,10 +391,11 @@ section {
   position: absolute;
   top: -100%;
   left: var(--space-4);
-  background: var(--color-accent);
-  color: var(--color-bg);
+  background: var(--redline);
+  color: var(--blueprint-deep);
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
   font-weight: var(--weight-semibold);
   z-index: 100;
 
@@ -333,11 +406,11 @@ section {
 
 /* Focus styles (accessibility) */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--redline);
   outline-offset: 2px;
 }
 
-/* Scroll progress bar (CSS scroll-driven; browsers without support just don't show it) */
+/* Scroll progress — thin redline plot line */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -345,7 +418,7 @@ section {
   right: 0;
   height: 2px;
   z-index: 60;
-  background: var(--gradient-brand);
+  background: var(--redline);
   transform-origin: 0 50%;
   transform: scaleX(0);
   animation: grow-progress auto linear;
@@ -357,19 +430,19 @@ section {
   to { transform: scaleX(1); }
 }
 
-/* Cursor spotlight */
-.spotlight {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(560px circle at var(--spot-x, 50%) var(--spot-y, 30%), rgba(252, 163, 17, 0.05), transparent 70%);
+/* Section spacing */
+section {
+  margin-bottom: var(--space-13);
+
+  @media (max-width: 768px) {
+    margin-bottom: var(--space-11);
+  }
 }
 
-/* Scroll reveal animation */
+/* Scroll reveal — lines plot in */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(18px);
   transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
 
@@ -378,10 +451,9 @@ section {
   transform: translateY(0);
 }
 
-/* Stagger cards inside revealed grids */
 .revealed .card {
   opacity: 0;
-  animation: card-in 0.6s var(--ease-out) forwards;
+  animation: card-in 0.55s var(--ease-out) forwards;
 }
 
 .revealed .card:nth-child(2) { animation-delay: 60ms; }
@@ -391,14 +463,8 @@ section {
 .revealed .card:nth-child(n+6) { animation-delay: 300ms; }
 
 @keyframes card-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Reduced motion */
@@ -414,9 +480,5 @@ section {
   [data-reveal] {
     opacity: 1;
     transform: none;
-  }
-
-  .spotlight {
-    display: none;
   }
 }

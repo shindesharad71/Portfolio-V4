@@ -17,7 +17,7 @@ import '../styles/global.css';
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
     <div class="scroll-progress" aria-hidden="true"></div>
-    <div class="spotlight" aria-hidden="true"></div>
+    <div class="sheet-frame" aria-hidden="true"></div>
     <Header />
     <main id="main">
       <Intro />
@@ -51,25 +51,10 @@ import '../styles/global.css';
     <!-- Console easter egg -->
     <script>
       console.log(
-        '%c👋 Hey, fellow dev!%c\nCurious how this is built? Astro + plain CSS, no frameworks.\nSource: https://github.com/shindesharad71/Portfolio-V4',
-        'font-size:16px;font-weight:bold;color:#fca311;',
-        'font-size:12px;color:#94a3b8;'
+        '%c// DRAWN BY SHARAD SHINDE%c\nAstro + hand-written CSS, no frameworks. Rendered as a blueprint.\nSource: https://github.com/shindesharad71/Portfolio-V4',
+        'font-family:monospace;font-size:14px;font-weight:bold;color:#ff6b4a;',
+        'font-family:monospace;font-size:12px;color:#a9c2e0;'
       );
-    </script>
-
-    <!-- Cursor spotlight (pointer devices only) -->
-    <script>
-      const spotlight = document.querySelector<HTMLElement>('.spotlight');
-      if (spotlight && matchMedia('(pointer: fine)').matches) {
-        window.addEventListener(
-          'pointermove',
-          (e) => {
-            spotlight.style.setProperty('--spot-x', `${e.clientX}px`);
-            spotlight.style.setProperty('--spot-y', `${e.clientY}px`);
-          },
-          { passive: true }
-        );
-      }
     </script>
   </body>
 </html>

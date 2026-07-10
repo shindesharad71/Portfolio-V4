@@ -10,165 +10,421 @@ if (months < 0) {
     months += 12;
 }
 
-const description = `Staff Engineer at HighLevel, specializing in backend architecture, microservices, and system design. Based in Pune, India. Passionate about writing clean code, mentoring developers, and building products that scale to millions of users.`;
+const description = `I design and operate the backend that sits behind products used by millions — microservices, data models, and the system design that keeps them fast under load. Based in Pune, India.`;
 
-const stats = [
-    { value: `${years}+`, label: 'Years of experience' },
-    { value: 'Millions', label: 'Of users served' },
+const dims = [
+    { label: 'Years shipping', value: `${years}+` },
+    { label: 'Users served', value: 'Millions' },
 ];
 ---
-<section class="intro" aria-label="Introduction" data-reveal>
-    <p class="intro-kicker">Staff Engineer · HighLevel · <span id="typed">backend architecture</span><span class="type-cursor" aria-hidden="true"></span></p>
-    <h1>
-        Hi, I'm <span class="gradient-text">Sharad</span>.<br />
-        I build systems that scale.
-    </h1>
-    <p class="intro-desc">{description}</p>
-    <div class="intro-actions">
-        <a href="#work" class="btn btn-primary">
-            View my work
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
-        </a>
-        <a href="#footer" class="btn btn-ghost">Get in touch</a>
-        <span class="intro-badge">
-            <span class="badge-dot"></span>
-            Available for collaboration
-        </span>
-    </div>
-    <dl class="intro-stats">
-        {stats.map((stat) => (
-            <div class="stat">
-                <dt class="stat-label">{stat.label}</dt>
-                <dd class="stat-value">{stat.value}</dd>
-            </div>
-        ))}
-    </dl>
-</section>
+<section class="intro" aria-label="Introduction">
+  <div class="intro-block">
+    <p class="intro-titleblock">
+      <span class="tb-id">
+        <span class="tb-name">Sharad Shinde</span>
+        <span class="tb-role">Staff Engineer — HighLevel</span>
+      </span>
+      <span class="tb-status">
+        <span class="status-led" aria-hidden="true"></span>
+        Available for collaboration
+      </span>
+    </p>
 
-<script>
-  const typed = document.getElementById('typed');
-  const phrases = ['backend architecture', 'distributed systems', 'microservices', 'mentoring engineers'];
-  if (typed && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    let phrase = 0;
-    let char = phrases[0].length;
-    let deleting = true;
-    const tick = () => {
-      char += deleting ? -1 : 1;
-      typed.textContent = phrases[phrase].slice(0, char);
-      if (deleting && char === 0) {
-        deleting = false;
-        phrase = (phrase + 1) % phrases.length;
-      } else if (!deleting && char === phrases[phrase].length) {
-        deleting = true;
-        setTimeout(tick, 2600);
-        return;
-      }
-      setTimeout(tick, deleting ? 40 : 70);
-    };
-    setTimeout(tick, 2600);
-  }
-</script>
+    <h1 class="intro-thesis">
+      I architect systems that <span class="gradient-text">scale to millions</span>.
+    </h1>
+
+    <p class="intro-desc">{description}</p>
+
+    <div class="intro-actions">
+      <a href="#work" class="btn btn-primary">
+        View builds
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#footer" class="btn btn-ghost">Get in touch</a>
+    </div>
+
+    <dl class="intro-dims">
+      {dims.map((d) => (
+        <div class="dim">
+          <dt class="dim-label">{d.label}</dt>
+          <dd class="dim-value">{d.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+
+  <!-- Signature: an orthographic schematic of "you as a system" that plots itself in on load -->
+  <figure class="intro-schematic" aria-label="Schematic: a request flows from users through the services I build out to scale">
+    <svg viewBox="0 0 520 470" role="img" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <marker id="ah" markerWidth="9" markerHeight="9" refX="6.5" refY="3.2" orient="auto">
+          <path d="M0.5,0.5 L6.5,3.2 L0.5,5.9" class="bp-arrow" fill="none" />
+        </marker>
+      </defs>
+
+      <!-- registration ticks -->
+      <path class="bp-reg" d="M14,14 h14 M14,14 v14" />
+      <path class="bp-reg" d="M506,456 h-14 M506,456 v-14" />
+
+      <!-- left dimension line -->
+      <path class="bp-dim" d="M30,40 v390 M26,40 h8 M26,430 h8" pathLength="1" />
+      <text class="bp-dim-text" x="20" y="235" transform="rotate(-90 20 235)">10⁶ req/s</text>
+
+      <!-- edges (drawn, in flow order) -->
+      <g class="bp-edges">
+        <path class="bp-edge" d="M260,70 V102" pathLength="1" marker-end="url(#ah)" />
+        <path class="bp-edge" d="M260,150 C260,172 110,176 110,198" pathLength="1" marker-end="url(#ah)" />
+        <path class="bp-edge" d="M260,150 V198" pathLength="1" marker-end="url(#ah)" />
+        <path class="bp-edge" d="M260,150 C260,172 410,176 410,198" pathLength="1" marker-end="url(#ah)" />
+        <path class="bp-edge" d="M110,250 C110,278 260,282 260,306" pathLength="1" marker-end="url(#ah)" />
+        <path class="bp-edge" d="M260,250 V306" pathLength="1" marker-end="url(#ah)" />
+        <path class="bp-edge" d="M410,250 C410,278 260,282 260,306" pathLength="1" marker-end="url(#ah)" />
+        <path class="bp-edge bp-edge-out" d="M260,356 V396" pathLength="1" marker-end="url(#ah)" />
+      </g>
+
+      <!-- nodes -->
+      <g class="bp-node" style="--i:0">
+        <rect class="bp-box" x="178" y="26" width="164" height="44" rx="2" />
+        <text class="bp-t" x="260" y="45">USERS</text>
+        <text class="bp-s" x="260" y="60">≈ 10⁶ concurrent</text>
+      </g>
+
+      <g class="bp-node" style="--i:1">
+        <rect class="bp-box" x="168" y="106" width="184" height="44" rx="2" />
+        <text class="bp-t" x="260" y="125">API GATEWAY</text>
+        <text class="bp-s" x="260" y="140">load balanced</text>
+      </g>
+
+      <g class="bp-node" style="--i:2">
+        <rect class="bp-box" x="55" y="200" width="110" height="50" rx="2" />
+        <text class="bp-t" x="110" y="222">SVC · A</text>
+        <text class="bp-s" x="110" y="238">stateless</text>
+      </g>
+      <g class="bp-node" style="--i:2">
+        <rect class="bp-box" x="205" y="200" width="110" height="50" rx="2" />
+        <text class="bp-t" x="260" y="222">SVC · B</text>
+        <text class="bp-s" x="260" y="238">stateless</text>
+      </g>
+      <g class="bp-node" style="--i:2">
+        <rect class="bp-box" x="355" y="200" width="110" height="50" rx="2" />
+        <text class="bp-t" x="410" y="222">SVC · C</text>
+        <text class="bp-s" x="410" y="238">stateless</text>
+      </g>
+
+      <g class="bp-node" style="--i:3">
+        <rect class="bp-box" x="168" y="308" width="184" height="48" rx="2" />
+        <text class="bp-t" x="260" y="329">DATA STORE</text>
+        <text class="bp-s" x="260" y="345">sharded · replicated</text>
+      </g>
+
+      <g class="bp-node bp-node-out" style="--i:4">
+        <rect class="bp-box bp-box-out" x="178" y="396" width="164" height="46" rx="2" />
+        <text class="bp-t bp-t-out" x="260" y="416">SCALE</text>
+        <text class="bp-s bp-s-out" x="260" y="432">99.9% uptime</text>
+      </g>
+
+      <!-- ambient request packets: the system under load -->
+      <circle class="bp-packet" cx="260" cy="48" r="3.5" />
+      <circle class="bp-packet bp-packet-2" cx="260" cy="48" r="3.5" />
+    </svg>
+    <figcaption class="bp-caption">FIG.00 — SYSTEM UNDER LOAD · DRAWN TO SCALE</figcaption>
+  </figure>
+</section>
 
 <style>
   .intro {
-    padding-bottom: var(--space-8);
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-9);
+    align-items: center;
+    padding-bottom: var(--space-6);
   }
 
-  .intro-kicker {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    color: var(--color-accent);
-    margin-bottom: var(--space-5);
-    letter-spacing: 0.02em;
-    min-height: 1.6em; /* reserve the line so retyping never shifts layout */
-  }
+  /* grid children must be allowed to shrink below content min-size */
+  .intro-block,
+  .intro-schematic { min-width: 0; }
 
-  .type-cursor {
-    display: inline-block;
-    width: 1px;
-    height: 1.1em;
-    margin-left: 2px;
-    background: var(--color-accent);
-    vertical-align: text-bottom;
-    animation: blink 1.1s step-end infinite;
-  }
-
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
-
-  h1 {
+  /* ---- Title block (text side) ---- */
+  .intro-titleblock {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-5);
+    padding-bottom: var(--space-4);
     margin-bottom: var(--space-6);
-    max-width: 22ch;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    animation: rise 0.6s var(--ease-out) both;
+  }
+
+  .tb-id {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .tb-name {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.02em;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+
+  .tb-role {
+    font-size: var(--text-xs);
+    letter-spacing: var(--track-label);
+    text-transform: uppercase;
+    color: var(--paper-faint);
+  }
+
+  .tb-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--paper-muted);
+    white-space: nowrap;
+  }
+
+  .status-led {
+    width: 8px;
+    height: 8px;
+    background: var(--redline);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--redline);
+    animation: pulse-led 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-led {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .intro-thesis {
+    font-size: var(--text-hero);
+    letter-spacing: 0.01em;
+    max-width: 15ch;
+    margin-bottom: var(--space-5);
+    animation: rise 0.6s var(--ease-out) 0.08s both;
   }
 
   .intro-desc {
-    font-size: var(--text-lg);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
     color: var(--color-text-muted);
-    max-width: 640px;
+    max-width: 46ch;
     line-height: var(--leading-relaxed);
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-7);
+    animation: rise 0.6s var(--ease-out) 0.16s both;
   }
 
   .intro-actions {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    gap: var(--space-4);
-    margin-bottom: var(--space-10);
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+    animation: rise 0.6s var(--ease-out) 0.24s both;
   }
 
-  .intro-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
-
-  .badge-dot {
-    width: 8px;
-    height: 8px;
-    background: #22c55e;
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  .intro-stats {
+  /* ---- Dimension callouts (stats) ---- */
+  .intro-dims {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-9);
-    padding-top: var(--space-7);
+    gap: var(--space-8);
+    padding-top: var(--space-5);
     border-top: 1px solid var(--color-border);
+    animation: rise 0.6s var(--ease-out) 0.32s both;
   }
 
-  .stat {
-    display: flex;
-    flex-direction: column-reverse;
+  .dim {
+    position: relative;
+    padding-left: var(--space-4);
   }
 
-  .stat-value {
+  /* dimension tick + extension line */
+  .dim::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 1px;
+    background: var(--line);
+  }
+  .dim::after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 2px;
+    width: 5px;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .dim-value {
     font-family: var(--font-display);
     font-size: var(--text-2xl);
     font-weight: var(--weight-bold);
-    letter-spacing: -0.02em;
-    color: var(--color-text);
+    letter-spacing: 0.01em;
+    color: var(--paper);
   }
 
-  .stat-label {
-    font-size: var(--text-sm);
-    color: var(--color-text-subtle);
+  .dim-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--track-label);
+    color: var(--paper-faint);
+    margin-bottom: var(--space-1);
+  }
+
+  /* ---- Schematic (signature) ---- */
+  .intro-schematic {
+    margin: 0;
+  }
+
+  .intro-schematic svg {
+    width: 100%;
+    height: auto;
+    max-height: 74vh;
+    display: block;
+  }
+
+  .bp-box { fill: rgba(130, 170, 220, 0.04); stroke: var(--line); stroke-width: 1.25; }
+  .bp-box-out { stroke: var(--redline); fill: rgba(255, 107, 74, 0.06); }
+
+  .bp-edge {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 1.25;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw 0.7s var(--ease-out) forwards;
+  }
+  .bp-edges path:nth-child(1) { animation-delay: 0.55s; }
+  .bp-edges path:nth-child(2),
+  .bp-edges path:nth-child(3),
+  .bp-edges path:nth-child(4) { animation-delay: 0.8s; }
+  .bp-edges path:nth-child(5),
+  .bp-edges path:nth-child(6),
+  .bp-edges path:nth-child(7) { animation-delay: 1.05s; }
+  .bp-edge-out { stroke: var(--redline); animation-delay: 1.3s; }
+
+  .bp-arrow { stroke: var(--line); stroke-width: 1.25; }
+
+  .bp-reg { stroke: var(--redline); stroke-width: 1.5; fill: none; opacity: 0.8; }
+
+  .bp-dim {
+    stroke: var(--line);
+    stroke-width: 1;
+    fill: none;
+    opacity: 0.55;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw 0.9s var(--ease-out) 0.3s forwards;
+  }
+  .bp-dim-text {
+    fill: var(--paper-faint);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-anchor: middle;
+  }
+
+  .bp-node {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: node-in 0.5s var(--ease-out) forwards;
+    animation-delay: calc(var(--i) * 0.13s + 0.15s);
+  }
+
+  .bp-t {
+    fill: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-anchor: middle;
+  }
+  .bp-t-out { fill: var(--redline); }
+  .bp-s {
+    fill: var(--paper-faint);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-anchor: middle;
+  }
+
+  /* ambient packets flowing down the spine (system under load) */
+  .bp-packet {
+    fill: var(--redline);
+    transform-box: fill-box;
+    transform-origin: center;
+    filter: drop-shadow(0 0 5px var(--redline));
+    opacity: 0;
+    animation: flow 2.6s linear infinite;
+    animation-delay: 1.7s;
+  }
+  .bp-packet-2 { animation-delay: 3s; }
+
+  @keyframes flow {
+    0% { transform: translateY(0); opacity: 0; }
+    8% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(371px); opacity: 0; }
+  }
+
+  .bp-caption {
+    margin-top: var(--space-3);
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--track-label);
+    color: var(--paper-faint);
+  }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes node-in {
+    from { opacity: 0; transform: translateY(6px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 860px) {
+    .intro {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+    .intro-schematic svg { max-height: none; max-width: 440px; margin-inline: auto; }
+    .bp-caption { text-align: center; }
   }
 
   @media (max-width: 600px) {
-    .intro-stats {
-      gap: var(--space-6) var(--space-8);
-    }
+    .intro-dims { gap: var(--space-6); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bp-node,
+    .intro-titleblock,
+    .intro-thesis,
+    .intro-desc,
+    .intro-actions,
+    .intro-dims { opacity: 1; transform: none; animation: none; }
+    .bp-edge,
+    .bp-dim { stroke-dashoffset: 0; animation: none; }
+    .status-led,
+    .bp-packet { animation: none; }
+    .bp-packet { display: none; }
   }
 </style>
